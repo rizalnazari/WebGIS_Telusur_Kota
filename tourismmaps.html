@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourism Maps - Telusur Kota</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .nearby-distance-btn {
+      background: transparent;
+      color: #666;
+      border: 1px solid #d1d5db;
+      transition: all 0.2s ease;
+    }
+
+    .nearby-distance-btn:hover {
+      border-color: #10b981;
+      color: #10b981;
+    }
+
+    .nearby-distance-btn.active {
+      background: #10b981;
+      color: #fff;
+      border-color: #059669;
+      font-weight: 700;
+    }
+
+    .nearby-distance-btn.active:hover {
+      background: #059669;
+      border-color: #047857;
+    }
+  </style>
+  
+</head>
+<body>
+
+  <!-- ================= HEADER SECTION ================= -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+      </a>
+
+     <nav class="navbar">
+        <a href="index.html" >BERANDA</a>
+        <a href="tematrip.html">TEMA TRIP</a>
+        <a href="map.html" >STORY MAPS</a>
+        <a href="tourismmaps.html" class="active">TOURISM MAPS</a>
+        <a href="profile.html">TENTANG KAMI</a>
+        </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= MAP CONTAINER ================= -->
+    <div id="map" class="map-container w-full"></div>
+
+    <!-- ================= FEATURE POPUP ================= -->
+    <div id="featurePopup" class="feature-popup hidden">
+      <div class="feature-popup-header">
+        <span id="featurePopupTitle">Informasi</span>
+        <button class="feature-popup-close" title="Tutup"><i class='bx bx-x'></i></button>
+      </div>
+      <div class="feature-popup-body" id="featurePopupBody"></div>
+    </div>
+
+    <!-- ================= BOTTOM RIGHT CONTROLS ================= -->
+    <div class="fixed bottom-6 right-6 z-30 flex flex-col items-end gap-2 pointer-events-auto">
+      <div class="flex flex-col gap-2 mb-2">
+        <button id="openLegendBtn" class="w-14 h-14 rounded-full bg-white/90 shadow-lg flex items-center justify-center text-2xl text-black border-2 border-gray-200 hover:bg-yellow-100 transition pointer-events-auto" aria-label="Buka Legenda Kategori">
+          <span class="font-bold text-lg">i</span>
+        </button>
+        <button id="openRouteBtn" class="w-14 h-14 rounded-full bg-blue-500 shadow-lg flex items-center justify-center text-2xl text-white border-2 border-blue-200 hover:bg-blue-600 transition pointer-events-auto" aria-label="Buka Menu Rute">
+          <span class="font-bold text-lg">⇄</span>
+        </button>
+        <button id="openNearbyBtn" class="w-14 h-14 rounded-full bg-green-500 shadow-lg flex items-center justify-center text-2xl text-white border-2 border-green-200 hover:bg-green-600 transition pointer-events-auto" aria-label="Buka Menu Nearby">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <path d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= LEGEND PANEL ================= -->
+    <div id="legendPanel" class="hidden absolute bottom-24 right-6 z-40 bg-white/95 rounded-xl shadow-lg border border-gray-100 p-4 flex flex-col gap-2 min-w-[220px] max-w-xs animate-fade-in-up">
+      <button class="panel-close-btn absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-xl text-gray-700 hover:bg-gray-200 hover:text-black transition z-10">×</button>
+      <div class="font-bold mb-2 text-sm text-gray-700">Legenda Kategori</div>
+      <div class="flex items-center gap-2 mb-1">
+        <img alt="Private" class="w-6 h-6 rounded-full border border-gray-300 bg-white object-cover" loading="lazy" src="https://res.cloudinary.com/dtvbkqf3x/image/upload/v1749010363/destination-categories/lh9pwk8f2chby8jxjfnb.png">
+        <span class="text-xs text-gray-700">Private</span>
+      </div>
+      <div class="flex items-center gap-2 mb-1">
+        <img alt="Regular" class="w-6 h-6 rounded-full border border-gray-300 bg-white object-cover" loading="lazy" src="https://res.cloudinary.com/dtvbkqf3x/image/upload/v1749010375/destination-categories/zdsdpnjbk4s9hcjnqlh1.png">
+        <span class="text-xs text-gray-700">Regular</span>
+      </div>
+      <div class="flex items-center gap-2 mb-1">
+        <img alt="Special" class="w-6 h-6 rounded-full border border-gray-300 bg-white object-cover" loading="lazy" src="https://res.cloudinary.com/dtvbkqf3x/image/upload/v1749010387/destination-categories/st0bjkvpwtfrdayjh87q.png">
+        <span class="text-xs text-gray-700">Special</span>
+      </div>
+    </div>
+
+
+    <!-- ================= ROUTE PANEL ================= -->
+    <div id="routePanel" class="hidden absolute bottom-24 right-6 z-40 bg-white/95 rounded-xl shadow-lg border border-gray-100 p-4 flex flex-col gap-3 animate-fade-in-up w-full max-w-xs sm:max-w-md">
+      <button class="panel-close-btn absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-300 text-xl text-gray-700 hover:bg-gray-200 hover:text-black transition z-10" aria-label="Tutup Menu Rute">×</button>
+      <div class="font-bold mb-2 text-sm text-gray-700 panel-title">Rute Telusur Kota</div>
+      <label class="flex items-center gap-2 mb-1 cursor-pointer">
+        <input type="checkbox" id="useMyLocationRoute">
+        <span class="text-xs">Gunakan lokasi saya</span>
+      </label>
+      <button id="resetToMyLocationRoute" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 rounded transition flex items-center justify-center gap-2 mb-2" type="button">
+        <span>Reset ke Lokasi Saya</span>
+      </button>
+      <div class="mb-2" id="startLocationSelectWrapper">
+        <select id="startLocationSelect" class="w-full border rounded px-2 py-1 text-xs" title="Select start destination for route">
+          <option value="">Pilih Destinasi Awal</option>
+        </select>
+      </div>
+      <div class="mb-2">
+        <select id="endLocationSelect" class="w-full border rounded px-2 py-1 text-xs" title="Select end destination for route">
+          <option value="">Pilih Destinasi Tujuan</option>
+        </select>
+      </div>
+      <button id="showRouteBtn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded transition flex items-center justify-center gap-2 disabled:opacity-60 mb-2" type="button">
+        <span>Tampilkan Rute</span>
+      </button>
+      <div id="routeInfo" class="text-xs text-gray-700"></div>
+    </div>
+
+    <!--NEARBY PANEL SECTION CODE-->
+
+    <!-- ================= NEARBY PANEL ================= -->
+    <div id="nearbyPanel" class="panel hidden absolute bottom-24 right-6 z-40 bg-white/95 rounded-xl shadow-lg border border-gray-100 p-4 flex flex-col gap-3 animate-fade-in-up w-full max-w-xs sm:max-w-md">
+      <div class="panel-header flex justify-between items-center border-b pb-2 mb-2">
+        <h3 class="font-bold text-sm text-gray-700 panel-title">Nearby Wisata</h3>
+        <button class="panel-close-btn w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-xl text-gray-500 hover:bg-gray-200 hover:text-black transition">&times;</button>
+      </div>
+    
+      <div class="distance-options flex gap-2 mb-2">
+        <button class="nearby-distance-btn active px-3 py-1 rounded-full text-xs font-bold border transition-all" data-distance="500">500 m</button>
+        <button class="nearby-distance-btn px-3 py-1 rounded-full text-xs font-bold border transition-all" data-distance="1000">1 km</button>
+        <button class="nearby-distance-btn px-3 py-1 rounded-full text-xs font-bold border transition-all" data-distance="2000">2 km</button>
+        <button class="nearby-distance-btn px-3 py-1 rounded-full text-xs font-bold border transition-all" data-distance="5000">5 km</button>
+      </div>
+
+      <div class="flex flex-col gap-2 mb-2">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="useMyLocation" class="w-4 h-4 accent-green-500">
+          <span class="text-xs text-gray-600">Gunakan lokasi saya</span>
+        </label>
+        
+        <button id="resetToMyLocation" class="w-full bg-slate-600 hover:bg-slate-700 text-white text-xs font-bold py-2 rounded transition shadow-sm">
+          Reset ke Lokasi Saya
+        </button>
+
+        <select id="manualLocationSelect" class="w-full p-2 text-xs border border-gray-200 rounded mt-1 bg-white focus:outline-none focus:ring-1 focus:ring-green-500" title="Select location for nearby analysis">
+          <option value="">-- Pilih Lokasi Awal --</option>
+        </select>
+      </div>
+
+      <button id="btnCariTerdekat" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition shadow-md flex items-center justify-center gap-2" type="button">
+        <span>Cari Terdekat</span>
+      </button>
+
+      <div class="mt-2 pt-2 border-t border-gray-100">
+        <div id="currentOriginLabel" class="text-[10px] text-gray-400 mb-2">Lokasi Awal: Belum ditentukan</div>
+        <div id="nearbyResultList" class="max-h-48 overflow-y-auto space-y-2">
+          <div class="text-xs text-gray-400 italic">Tidak ada destinasi dalam radius ini.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP LEFT CONTROLS -->
+    <!-- ================= TOP LEFT CONTROLS ================= -->
+    <div class="absolute top-24 left-4 z-30 flex flex-col gap-1 items-start sm:top-24 sm:left-8">
+      <div class="bg-white/90 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-1 p-1">
+        <button id="zoomInBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-base" aria-label="Zoom In">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+          </svg>
+        </button>
+        <button id="zoomOutBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-base" aria-label="Zoom Out">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+          </svg>
+        </button>
+        <button id="locateBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-blue-100 transition text-base" aria-label="Lokasi Saya">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <path d="M500 224h-30.364C455.724 130.325 381.675 56.276 288 42.364V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v30.364C130.325 56.276 56.276 130.325 42.364 224H12c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h30.364C56.276 381.675 130.325 455.724 224 469.636V500c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-30.364C381.675 455.724 455.724 381.675 469.636 288H500c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12zM288 404.634V364c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40.634C165.826 392.232 119.783 346.243 107.366 288H148c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12h-40.634C119.768 165.826 165.757 119.783 224 107.366V148c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-40.634C346.174 119.768 392.217 165.757 404.634 224H364c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40.634C392.232 346.174 346.243 392.217 288 404.634zM288 256c0 17.673-14.327 32-32 32s-32-14.327-32-32c0-17.673 14.327-32 32-32s32 14.327 32 32z"></path>
+          </svg>
+        </button>
+        <div class="relative">
+          <button id="basemapBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition text-base" aria-label="Ganti Basemap">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z"></path>
+            </svg>
+          </button>
+          <div id="basemapPanel" class="hidden absolute left-0 top-full mt-2 w-48 rounded-2xl bg-white/95 shadow-lg border border-gray-200 p-2 text-sm text-gray-800 z-40">
+            <div class="font-semibold mb-2 px-2">Pilih Basemap</div>
+            <button type="button" class="basemap-option w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 transition" data-basemap-index="0">CartoDB Voyager</button>
+            <button type="button" class="basemap-option w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 transition" data-basemap-index="1">OpenStreetMap</button>
+            <button type="button" class="basemap-option w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 transition" data-basemap-index="2">Esri WorldImagery</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </main>
+
+    <!-- Leaflet & Turf.js -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER SECTION -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+      </a>
+
+      <nav class="navbar">
+        <a href="index.html" class="active">BERANDA</a>
+        <a href="tematrip.html" >TEMA TRIP</a>
+        <a href="map.html">STORY MAPS</a>
+        <a href="tourismmaps.html">TOURISM MAPS</a>
+        <a href="profile.html">TENTANG KAMI</a>
+        </nav>
+    </div>
+  </header>
+
+  <!-- SLIDER CONTAINER SECTION -->
+  <section class="hero">
+    <div class="slider-container" id="slider-container">
+        <div class="slider-wrapper">
+            <img src="DOKUMENTASI/BERANDA/IMG_6624.JPG" class="slide active" alt="Telusur Kota Carousel Slide 1">
+            <img src="DOKUMENTASI/BERANDA/IMG_0859.JPG" class="slide" alt="Telusur Kota Carousel Slide 2">
+            <img src="DOKUMENTASI/BERANDA/IMG_8692.JPG" class="slide" alt="Telusur Kota Carousel Slide 3">
+            <img src="DOKUMENTASI/BERANDA/IMG_4212.JPG" class="slide" alt="Telusur Kota Carousel Slide 4">
+            <img src="DOKUMENTASI/BERANDA/IMG_0264.JPG" class="slide" alt="Telusur Kota Carousel Slide 5">
+            <img src="DOKUMENTASI/BERANDA/IMG_6643.JPG" class="slide" alt="Telusur Kota Carousel Slide 6">
+            <img src="DOKUMENTASI/BERANDA/IMG_8692.JPG" class="slide" alt="Telusur Kota Carousel Slide 7">
+        </div>
+
+        <button class="prev-btn" id="prevBtn" title="Previous slide"><i class='bx bx-chevron-left'></i></button>
+        <button class="next-btn" id="nextBtn" title="Next slide"><i class='bx bx-chevron-right'></i></button>
+
+        <div class="dots-container">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <div class="hero-overlay"></div>
+        <div class="hero-content">
+        <h1>Walk the City,<br>Feel the Story</h1>
+        <p>Jelajahi sisi lain Kota lebih mendalam.</p>
+    </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about-image-wrapper">
+            <img src="DOKUMENTASI/BERANDA/IMG_0563.JPG" alt="Asal Usul Salatiga">
+            </div>
+        </div>
+        <div class="about-content">
+            <h2>Telusur Kota</h2>
+            <p>Wadah untuk mengenalkan dan memahami sejarah dan budaya melalui pariwisata dalam suatu kota. 
+               Hal ini bertujuan untuk memperkaya perspektif kita dalam proses mengukir sejarah baru di masa sekarang dan yang akan datang.</p>
+            <button class="btn-map" onclick="window.location.href='map.html'">
+            <i class='bx bx-map-pin'></i> Story Maps
+            </button>
+            <button class="btn-tourism" onclick="window.location.href='tourismmaps.html'">
+             <i class='bx bx-map-pin'></i> Tourism Maps
+            </button>
+        </div>
+    </section>
+
+<!-- FEATURE CARD SECTION -->
+    <section class="features-section">
+        <h2 class="section-title">Eksplorasi Tema Trip</h2>
+        <div class="card-grid">
+            
+            <div class="card">
+                <img src="DOKUMENTASI/BERANDA/IMG_7614.JPG" alt="Pecinan">
+                <div class="card-body">
+                    <h3>Regular Trip</h3>
+                    <p class="text-justify">
+                      Agenda perjalanan yang diadakan 2 minggu sekali pada minggu pertama & minggu ketiga dalam satu bulan, dengan tema trip yang sudah ditentukan oleh Tim Telusur
+                    </p>
+                    <button class="btn-outline" onclick="navigateToTematrip('regular')">Lihat Detail</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="DOKUMENTASI/BERANDA/IMG_3938.JPG" alt="Di Balik Tembok Jepang">
+                <div class="card-body">
+                    <h3>Special Trip</h3>
+                    <p class="text-justify">
+                      Agenda perjalanan yang diadakan setahun sekali pada peristiwa tertentu (e.g. hari pendidikan nasional). Tema perjalanan dari trip ini bisa diakses Teman Telusur tanpa menunggu 1 tahun sekali melalui <b>"Trip Privat"</b>
+                    </p>
+                    <button class="btn-outline" onclick="navigateToTematrip('special')">Lihat Detail</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="DOKUMENTASI/BERANDA/IMG_4238.JPG" alt="Suzanne De La Brethoniere">
+                <div class="card-body">
+                    <h3>Private Trip</h3>
+                    <p class="text-justify">
+                      Agenda perjalanan khusus yang cocok dilakukan bersama teman, keluarga, juga institusi dengan tema dan waktu yang dapat disesuaikan atas kesepakatan bersama
+                    </p>
+                    <button class="btn-outline" onclick="navigateToTematrip('private')">Lihat Detail</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="DOKUMENTASI/BERANDA/IMG_2790.JPG" alt="Pecinan">
+                <div class="card-body">
+                    <h3>Education Trip</h3>
+                    <p class="text-justify">
+                      Agenda perjalanan dengan tema yang sudah ditetapkan Tim Telusur khusus untuk pelajar yang sedang berada di bangku sekolah.
+                    </p>
+                    <button class="btn-outline" onclick="navigateToTematrip('education')">Lihat Detail</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+ <!-- FOOTER SECTION -->
+  <footer class="footer">
+  <div class="footer-inner-container">
+    <div class="footer-content">
+      
+      <div class="footer-section about">
+        <div class="footer-logo">
+          <a href="index.html" class="logo">
+            <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+          </a>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61575501765588" target="_blank" rel="noopener" title="Follow us on Facebook"><i class='bx bxl-facebook-circle'></i></a>
+          <a href="https://www.instagram.com/telusur.kota" target="_blank" rel="noopener" title="Follow us on Instagram"><i class='bx bxl-instagram'></i></a>
+          <a href="https://www.tiktok.com/@telusur.kota" target="_blank" rel="noopener" title="Follow us on TikTok"><i class='bx bxl-tiktok'></i></a>     
+          <a href="https://api.whatsapp.com/send/?phone=6285117159954&text&type=phone_number&app_absent=0" target="_blank" rel="noopener" title="Contact us on WhatsApp"><i class='bx bxl-whatsapp'></i></a>        
+        </div>
+      </div>
+
+      <div class="footer-section contact">
+        <h3>Kontak Kami</h3>
+        <ul>
+          <li><i class='bx bx-map'></i> Salatiga, Central Java</li>
+          <li><i class='bx bx-envelope'></i> temantelusur@gmail.com</li>
+          <li><i class='bx bx-phone'></i> (62) 85117159954</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright-bottom">
+      <p>© 2026 Telusur Kota. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+"type": "FeatureCollection",
+"name": "DESTINASI_SPECIAL_PT",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Destinasi": "Denhubrem 073 Hubdam IV/Dip", "DESTINATIO": "Denhubrem 073 Hubdam IV/Dip", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.494676100000049, -7.315366199999971, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Kodim 0714 / Salatiga", "DESTINATIO": "Kodim 0714 / Salatiga", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.500573, -7.322423899999933, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Puri Makutarama", "DESTINATIO": "Puri Makutarama", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.494211100000086, -7.316085099999952, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Gereja Kristen Jawa (GKJ) Salatiga", "DESTINATIO": "Gereja Kristen Jawa (GKJ) Sal*", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.49827, -7.32051, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Bekas Rumah Keluarga Kartini", "DESTINATIO": "Bekas Rumah Keluarga Kartini", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.497931794000067, -7.320027718999938, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Gereja Katolik Santo Paulus Miki", "DESTINATIO": "Gereja Katolik Santo Paulus M*", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.50148, -7.32229, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Bekas Rumah Hartini", "DESTINATIO": "Bekas Rumah Hartini", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.504151169000068, -7.324267906999978, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "KB-TK-SD Kanisius Cungkup Salatiga", "DESTINATIO": "KB-TK-SD Kanisius Cungkup Sal*", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.50177, -7.32195, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Batalyon Infanteri 411", "DESTINATIO": "Batalyon Infanteri 411", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.503522930000088, -7.33525750299998, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Makam Kyai Abdul Wahid", "DESTINATIO": "Makam Kyai Abdul Wahid", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.52369, -7.35711, 0.0 ] } },
+{ "type": "Feature", "properties": { "Destinasi": "Masjid Al-Fudlola", "DESTINATIO": "Masjid Al-Fudlola", "CATEGORY": "Special" }, "geometry": { "type": "Point", "coordinates": [ 110.5261, -7.3566, 0.0 ] } }
+]
+}

@@ -1,0 +1,847 @@
+/* ============================================
+   TELUSUR KOTA - TOUR BOOKING SYSTEM
+   GLOBAL STYLES & VARIABLES
+   ============================================ */
+
+:root {
+    --primary-blue: #007bff;
+    --primary-hover: #0056b3;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --text-dark: #333;
+    --text-light: #666;
+    --text-lighter: #999;
+    --bg-light: #f4f7f6;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Background Pattern */
+.tour-map-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://via.placeholder.com/1920x1080?text=Map+Background');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    z-index: -1;
+}
+
+.tour-main-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   HEADER & TYPOGRAPHY
+   ============================================ */
+
+.tour-form-header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: tour-slideDown 0.6s ease;
+}
+
+.tour-form-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #0056b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tour-form-header p {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+/* ============================================
+   STEPPER PROGRESS INDICATOR
+   ============================================ */
+
+.tour-stepper-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.tour-stepper-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary-blue) 0%, #ddd 100%);
+    z-index: 1;
+}
+
+.tour-stepper-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    flex: 1;
+    transition: var(--transition);
+}
+
+.tour-step-counter {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--text-lighter);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 2;
+}
+
+.tour-stepper-item.tour-active .tour-step-counter {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #0056b3 100%);
+    border-color: var(--primary-blue);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.tour-stepper-item.tour-completed .tour-step-counter {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: #fff;
+}
+
+.tour-step-name {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.tour-stepper-item.tour-active .tour-step-name {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+/* ============================================
+   FORM PANELS (GLASSMORPHISM)
+   ============================================ */
+
+.tour-form-panel {
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    animation: tour-fadeInUp 0.5s ease;
+}
+
+.tour-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+}
+
+.tour-form-panel h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dark);
+}
+
+.tour-form-panel h2 i {
+    font-size: 1.6rem;
+    color: var(--primary-blue);
+}
+
+.tour-panel-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: -10px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.tour-form-step {
+    animation: tour-fadeInUp 0.5s ease;
+}
+
+.tour-form-step.tour-hidden {
+    display: none !important;
+}
+
+.tour-hidden {
+    display: none !important;
+}
+
+/* ============================================
+   INPUTS & WHATSAPP
+   ============================================ */
+
+.tour-input-group {
+    margin-bottom: 20px;
+}
+
+.tour-input-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.iti {
+    width: 100%;
+}
+
+#tour-whatsapp {
+    padding-left: 52px !important;
+    height: 48px;
+}
+
+.tour-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.tour-input-wrapper i {
+    position: absolute;
+    left: 15px;
+    color: #aaa;
+    font-size: 1.2rem;
+    z-index: 5;
+}
+
+.tour-input-wrapper input,
+.tour-input-group textarea {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    background-color: #fbfbfb;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.tour-input-wrapper input:focus,
+.tour-input-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background-color: #fff;
+}
+
+.tour-input-wrapper input#tour-instagram:focus + i, 
+.tour-input-wrapper i.bxl-instagram {
+    transition: color 0.3s ease;
+}
+
+.tour-input-wrapper input#tour-instagram:focus {
+    border-color: #E1306C;
+    box-shadow: 0 0 0 3px rgba(225, 48, 108, 0.1);
+}
+
+/* ============================================
+   CATEGORY CARDS
+   ============================================ */
+
+.tour-category-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.tour-category-card {
+    background-color: #fff;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.tour-category-card i {
+    font-size: 2rem;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.tour-category-card span {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.tour-category-card small {
+    font-size: 0.75rem;
+    color: var(--text-lighter);
+    line-height: 1.3;
+}
+
+.tour-category-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.15);
+}
+
+.tour-category-card.active {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.05) 0%, rgba(0, 123, 255, 0.02) 100%);
+    border-color: var(--primary-blue);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+}
+
+.tour-category-card.active i {
+    color: var(--primary-blue);
+    transform: scale(1.1);
+}
+
+.tour-category-card.active span {
+    color: var(--primary-blue);
+}
+
+/* ============================================
+   LOCATION CARDS
+   ============================================ */
+
+.tour-location-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.tour-location-card {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #eee;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.tour-location-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.tour-location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.tour-location-card:hover img {
+    transform: scale(1.05);
+}
+
+.tour-card-details {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tour-card-details h3 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.tour-card-details .tour-durasi,
+.tour-card-details .tour-harga {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.tour-card-details .tour-harga {
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+.tour-select-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.tour-location-card.active {
+    border-color: var(--primary-blue);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+}
+
+.tour-location-card.active .tour-select-icon {
+    opacity: 1;
+    animation: tour-scaleIn 0.3s ease;
+}
+
+/* ============================================
+   PAYMENT METHOD CARDS
+   ============================================ */
+
+.tour-payment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.tour-payment-method-card {
+    background: #fff;
+    border: 2px solid #eee;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    box-shadow: var(--shadow-sm);
+}
+
+.tour-payment-method-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-blue);
+    box-shadow: var(--shadow-md);
+}
+
+.tour-method-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tour-method-header i {
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+}
+
+.tour-method-header span {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.tour-bank-logos {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.tour-bank-logos img {
+    height: 20px;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.tour-qris-logo-container {
+    margin-bottom: 15px;
+}
+
+.tour-qris-logo-container img {
+    height: 40px;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.tour-method-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.tour-payment-method-card.active {
+    border-color: var(--primary-blue);
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.02) 0%, rgba(0, 123, 255, 0.05) 100%);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.15);
+}
+
+.tour-payment-method-card.active .tour-bank-logos img,
+.tour-payment-method-card.active .tour-qris-logo-container img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* ============================================
+   SUMMARY GRID
+   ============================================ */
+
+.tour-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.tour-summary-item {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    transition: var(--transition);
+}
+
+.tour-summary-item:hover {
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+}
+
+.tour-summary-item label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-lighter);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tour-summary-item p {
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    word-break: break-word;
+}
+
+/* ============================================
+   INFO BOX
+   ============================================ */
+
+.tour-info-box {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.05) 0%, rgba(0, 123, 255, 0.02) 100%);
+    border-left: 4px solid var(--primary-blue);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tour-info-box p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.tour-info-box strong {
+    color: var(--primary-blue);
+}
+
+/* ============================================
+   BUTTONS & FORM ACTIONS
+   ============================================ */
+
+.tour-form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.tour-btn-primary,
+.tour-btn-secondary {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+    font-family: inherit;
+    text-transform: capitalize;
+}
+
+.tour-btn-primary {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #0056b3 100%);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+.tour-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 123, 255, 0.4);
+}
+
+.tour-btn-primary:active {
+    transform: translateY(-1px);
+}
+
+.tour-btn-secondary {
+    background-color: #f0f0f0;
+    color: var(--text-dark);
+    border: 2px solid #ddd;
+}
+
+.tour-btn-secondary:hover {
+    background-color: #e0e0e0;
+    border-color: var(--text-light);
+    transform: translateY(-3px);
+}
+
+.tour-btn-primary:disabled,
+.tour-btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes tour-slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tour-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tour-scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes tour-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .tour-form-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .tour-stepper-wrapper {
+        margin-bottom: 40px;
+    }
+
+    .tour-step-counter {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .tour-step-name {
+        font-size: 0.7rem;
+        margin-top: 8px;
+    }
+
+    .tour-form-panel {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .tour-form-panel h2 {
+        font-size: 1.2rem;
+    }
+
+    .tour-category-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .tour-category-card {
+        padding: 15px;
+    }
+
+    .tour-category-card i {
+        font-size: 1.5rem;
+    }
+
+    .tour-location-cards-grid,
+    .tour-payment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tour-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tour-form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .tour-btn-primary,
+    .tour-btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .tour-main-container {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tour-form-header {
+        margin-bottom: 30px;
+    }
+
+    .tour-form-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .tour-stepper-wrapper::before {
+        top: 15px;
+    }
+
+    .tour-step-counter {
+        width: 35px;
+        height: 35px;
+        font-size: 0.85rem;
+    }
+
+    .tour-step-name {
+        font-size: 0.65rem;
+    }
+
+    .tour-form-panel {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .tour-form-panel h2 {
+        font-size: 1rem;
+    }
+
+    .tour-category-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .tour-category-card {
+        padding: 12px;
+    }
+
+    .tour-category-card i {
+        font-size: 1.3rem;
+    }
+
+    .tour-category-card span {
+        font-size: 0.85rem;
+    }
+
+    .tour-category-card small {
+        font-size: 0.65rem;
+    }
+
+    .tour-panel-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .tour-form-actions {
+        margin-top: 30px;
+    }
+
+    .tour-btn-primary,
+    .tour-btn-secondary {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+
+    .tour-summary-item {
+        padding: 12px;
+    }
+
+    .tour-summary-item label {
+        font-size: 0.75rem;
+    }
+
+    .tour-summary-item p {
+        font-size: 0.9rem;
+    }
+
+    .tour-info-box {
+        padding: 15px;
+    }
+
+    .tour-info-box p {
+        font-size: 0.85rem;
+    }
+}

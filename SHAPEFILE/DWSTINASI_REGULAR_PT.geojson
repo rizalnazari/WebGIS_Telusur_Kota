@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "Destinasi_Salatiga_Satu_Putaran_Waktu",
+"features": [
+{ "type": "Feature", "properties": { "Id": 0, "Fungsi": "Hotel Mutiara", "Toponimi": "Hotel" }, "geometry": { "type": "Point", "coordinates": [ 445103.412661802314688, 9190206.540858156979084 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Fungsi": "Asistent Resident", "Toponimi": "Rumah Dinas Walikota" }, "geometry": { "type": "Point", "coordinates": [ 445310.237195253139362, 9190264.065537502989173 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Fungsi": "Rumah Dokter Hasmo", "Toponimi": "Rumah" }, "geometry": { "type": "Point", "coordinates": [ 445108.630239381163847, 9190319.133607326075435 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Fungsi": "GarasI ESTO", "Toponimi": "Food Court" }, "geometry": { "type": "Point", "coordinates": [ 445139.386411152780056, 9190192.168909212574363 ] } },
+{ "type": "Feature", "properties": { "Id": 0, "Fungsi": "1915 Coffee", "Toponimi": "Coffe Shop" }, "geometry": { "type": "Point", "coordinates": [ 445646.315012261155061, 9190173.92547095939517 ] } }
+]
+}

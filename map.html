@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telusur Kota</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="full-map-story-page">
+
+  <!-- HEADER SECTION -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+      </a>
+
+      <nav class="navbar">
+        <a href="index.html" >BERANDA</a>
+        <a href="tematrip.html" >TEMA TRIP</a>
+        <a href="map.html" class="active">STORY MAPS</a>
+        <a href="tourismmaps.html">TOURISM MAPS</a>
+        <a href="profile.html">TENTANG KAMI</a>
+        </nav>
+    </div>
+  </header>
+
+  <!-- MAP CONTENT SECTION -->
+  <main class="story-wrapper">
+    <!-- MAIN MAP -->
+    <div id="map"></div>
+
+    <!-- TOP LEFT CONTROLS -->
+<div class="absolute top-24 left-[400px] z-30 flex flex-col gap-1 items-start transition-all duration-300">
+  <div class="bg-white/90 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-1 p-1">
+    
+    <button id="zoomInBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-xl" aria-label="Zoom In">
+      <i class='bx bx-plus'></i>
+    </button>
+
+    <button id="zoomOutBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-xl" aria-label="Zoom Out">
+      <i class='bx bx-minus'></i>
+    </button>
+
+    <button id="locateBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-blue-100 transition text-xl" aria-label="Lokasi Saya">
+      <i class='bx bx-target-lock'></i>
+    </button>
+
+    <div class="relative">
+      <button id="basemapBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition text-xl" aria-label="Ganti Basemap">
+        <i class='bx bx-layer'></i>
+      </button>
+      
+      <div id="basemapPanel" class="hidden absolute left-0 top-full mt-2 w-48 rounded-2xl bg-white/95 shadow-lg border border-gray-200 p-2 text-sm text-gray-800 z-40">
+        <div class="font-semibold mb-2 px-2">Pilih Basemap</div>
+        <button type="button" class="basemap-option w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 transition" data-basemap-index="0">CartoDB Voyager</button>
+        <button type="button" class="basemap-option w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 transition" data-basemap-index="1">OpenStreetMap</button>
+        <button type="button" class="basemap-option w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 transition" data-basemap-index="2">Esri WorldImagery</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- SIDE PANEL -->
+    <aside class="side-panel">
+      <!-- PANEL HEADER -->
+      <div class="side-panel-header">
+        <h2>Titik Sejarah Kota</h2>
+        <div class="side-filter-container">
+          <button class="side-filter-btn active" data-filter="all"><i class='bx bx-grid-alt'></i> Semua</button>
+          <button class="side-filter-btn" data-filter="regular"><i class='bx bx-walk'></i> Regular</button>
+          <button class="side-filter-btn" data-filter="special"><i class='bx bx-star'></i> Special</button>
+          <button class="side-filter-btn" data-filter="private"><i class='bx bx-lock-alt'></i> Private</button>
+          <button class="side-filter-btn" data-filter="education"><i class='bx bx-lock-alt'></i> Education</button>
+        </div>
+      </div>
+
+      <!-- CONTENT LIST -->
+      <div class="content-list">
+        <div class="story-card" data-kategori="regular" onclick="zoomToLocation(0)">
+          <img src="https://via.placeholder.com/400x180?text=Hotel+Mutiara" alt="Hotel Mutiara">
+          <div class="card-info">
+            <span class="badge badge-regular">Regular</span>
+            <h3>Hotel Mutiara</h3>
+            <p>Bagian penting dari sejarah akomodasi kota yang tetap mempertahankan nilai arsitektur klasiknya.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="regular" onclick="zoomToLocation(1)">
+          <img src="https://via.placeholder.com/400x180?text=Asistent+Resident" alt="Rumah Dinas">
+          <div class="card-info">
+            <span class="badge badge-regular">Regular</span>
+            <h3>Asistent Resident</h3>
+            <p>Bangunan bersejarah yang kini berfungsi sebagai Rumah Dinas Walikota Salatiga.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="regular" onclick="zoomToLocation(2)">
+          <img src="https://via.placeholder.com/400x180?text=Rumah+Dokter+Hasmo" alt="Rumah Dokter Hasmo">
+          <div class="card-info">
+            <span class="badge badge-regular">Regular</span>
+            <h3>Rumah Dokter Hasmo</h3>
+            <p>Arsitektur kolonial yang masih terjaga keasliannya.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="regular" onclick="zoomToLocation(3)">
+          <img src="https://via.placeholder.com/400x180?text=Garasi+ESTO" alt="Garasi ESTO">
+          <div class="card-info">
+            <span class="badge badge-regular">Regular</span>
+            <h3>Garasi ESTO</h3>
+            <p>Bekas garasi bus legendaris yang kini menjadi pusat kuliner.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="regular" onclick="zoomToLocation(4)">
+          <img src="https://via.placeholder.com/400x180?text=1915+Coffee" alt="1915 Coffee">
+          <div class="card-info">
+            <span class="badge badge-regular">Regular</span>
+            <h3>1915 Coffee</h3>
+            <p>Bangunan bersejarah tahun 1915 yang diubah menjadi cafe modern.</p>
+          </div>
+        </div>
+
+        <!-- Special Category Cards -->
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(5)">
+          <img src="https://via.placeholder.com/400x180?text=Denhubrem+073" alt="Denhubrem 073">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Denhubrem 073 Hubdam IV/Dip</h3>
+            <p>Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(6)">
+          <img src="https://via.placeholder.com/400x180?text=Kodim+0714" alt="Kodim 0714">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Kodim 0714 / Salatiga</h3>
+            <p>Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(7)">
+          <img src="https://via.placeholder.com/400x180?text=Puri+Makutarama" alt="Puri Makutarama">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Puri Makutarama</h3>
+            <p>Tempat istimewa dengan arsitektur dan nilai sejarah yang unik.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(8)">
+          <img src="https://via.placeholder.com/400x180?text=GKJ+Salatiga" alt="GKJ Salatiga">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Gereja Kristen Jawa (GKJ) Salatiga</h3>
+            <p>Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(9)">
+          <img src="https://via.placeholder.com/400x180?text=Rumah+Kartini" alt="Rumah Kartini">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Bekas Rumah Keluarga Kartini</h3>
+            <p>Rumah bersejarah yang terkait dengan tokoh nasional.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(10)">
+          <img src="https://via.placeholder.com/400x180?text=Santo+Paulus+Miki" alt="Santo Paulus Miki">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Gereja Katolik Santo Paulus Miki</h3>
+            <p>Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(11)">
+          <img src="https://via.placeholder.com/400x180?text=Rumah+Hartini" alt="Rumah Hartini">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Bekas Rumah Hartini</h3>
+            <p>Rumah bersejarah dengan nilai penting dalam sejarah lokal.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(12)">
+          <img src="https://via.placeholder.com/400x180?text=Kanisius+Cungkup" alt="Kanisius Cungkup">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>KB-TK-SD Kanisius Cungkup Salatiga</h3>
+            <p>Institusi pendidikan bersejarah dengan nilai budaya.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(13)">
+          <img src="https://via.placeholder.com/400x180?text=Batalyon+411" alt="Batalyon 411">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Batalyon Infanteri 411</h3>
+            <p>Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(14)">
+          <img src="https://via.placeholder.com/400x180?text=Makam+Kyai" alt="Makam Kyai Abdul Wahid">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Makam Kyai Abdul Wahid</h3>
+            <p>Makam tokoh agama dengan nilai spiritual dan sejarah.</p>
+          </div>
+        </div>
+
+        <div class="story-card" data-kategori="special" onclick="zoomToLocation(15)">
+          <img src="https://via.placeholder.com/400x180?text=Masjid+Al-Fudlola" alt="Masjid Al-Fudlola">
+          <div class="card-info">
+            <span class="badge badge-special">Special</span>
+            <h3>Masjid Al-Fudlola</h3>
+            <p>Masjid bersejarah dengan nilai spiritual dan keagamaan.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER PANEL -->
+      <footer class="footer-panel">
+        <p>© 2026 WebGIS Portfolio | Built by Telusur Kota</p>
+      </footer>
+    </aside>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

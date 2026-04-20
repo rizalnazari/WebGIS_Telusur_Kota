@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tema Trip</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Material Symbols for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <!-- HEADER SECTION -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+      </a>
+
+      <nav class="navbar">
+        <a href="index.html" >BERANDA</a>
+        <a href="tematrip.html" class="active">TEMA TRIP</a>
+        <a href="map.html">STORY MAPS</a>
+        <a href="tourismmaps.html">TOURISM MAPS</a>
+        <a href="profile.html">TENTANG KAMI</a>
+      </nav>
+    </div>
+  </header>
+
+
+ <!-- TABS SECTION -->
+    <section id="tematrip-section">
+    <div class="page-section-title">
+        <span class="badge">Eksplorasi Tema Trip</span>
+        <h2>Pilih <span class="italic-accent">Tema Tur</span> Anda</h2>
+        <p class="section-subtitle">Temukan narasi tersembunyi di setiap sudut kota melalui kategori tur yang dirancang khusus untuk pengalaman imersif.</p>
+    </div>
+
+<!-- CATEGORY BUTTONS -->
+
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="regular">Regular</button>
+        <button class="filter-btn" data-filter="special">Special</button>
+        <button class="filter-btn" data-filter="private">Private</button>
+        <button class="filter-btn" data-filter="education">Education</button>
+    </div>
+
+<!--TOUR GUIDES SECTION-->
+<div id="tour-grid" class="tour-page">
+    
+    <!-- Card 1 -->
+    <div class="tour-card" data-category="regular">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Hotel Mutiara">
+        <div class="badge-time">
+            <span class="material-symbols-outlined">schedule</span> 2 Jam
+        </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Regular
+            </div>
+            <h3>Hotel Mutiara</h3>
+            <p class="text-justify">Bagian penting dari sejarah akomodasi kota yang ikonik.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 100.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="tour-card" data-category="regular">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Asistent Resident">
+        <div class="badge-time">
+            <span class="material-symbols-outlined">schedule</span> 2 Jam
+        </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Regular
+            </div>
+            <h3>Asistent Resident</h3>
+            <p class="text-justify">Kini berfungsi sebagai Rumah Dinas Walikota Salatiga.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 100.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="tour-card" data-category="regular">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Rumah Dokter Hasmo">
+        <div class="badge-time">
+            <span class="material-symbols-outlined">schedule</span> 2 Jam
+        </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Regular
+            </div>
+            <h3>Rumah Dokter Hasmo</h3>
+            <p class="text-justify">Arsitektur kolonial yang masih terjaga keasliannya.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 100.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="tour-card" data-category="regular">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Garasi ESTO">
+        <div class="badge-time">
+            <span class="material-symbols-outlined">schedule</span> 2 Jam
+        </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Regular
+            </div>
+            <h3>Garasi ESTO</h3>
+            <p class="text-justify">Bekas garasi bus legendaris yang kini menjadi pusat kuliner.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 100.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="tour-card" data-category="regular">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="1915 Coffee">
+        <div class="badge-time">
+            <span class="material-symbols-outlined">schedule</span> 2 Jam
+        </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Regular
+            </div>
+            <h3>1915 Coffee</h3>
+            <p class="text-justify">Bangunan bersejarah tahun 1915 yang diubah menjadi cafe modern.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 100.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 6 (Custom Tour/CTA) -->
+    <div class="tour-card custom-card">
+        <div class="card-image custom-card-image">
+            <span class="material-symbols-outlined custom-icon-add">add_circle</span>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Custom Tour
+            </div>
+            <h3 class="text-primary">Request Custom Tour</h3>
+            <p class="text-justify">Punya destinasi impian sendiri? Hubungi tim kami untuk membuat itinerary personal yang unik untukmu.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Konsultasi</span>
+                    <div class="price">Gratis</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Denhubrem 073 Hubdam IV/Dip">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Denhubrem 073 Hubdam IV/Dip</h3>
+            <p class="text-justify">Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Kodim 0714 / Salatiga">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 1 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Kodim 0714 / Salatiga</h3>
+            <p class="text-justify">Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Puri Makutarama">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Puri Makutarama</h3>
+            <p class="text-justify">Tempat istimewa dengan arsitektur dan nilai sejarah yang unik.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Gereja Kristen Jawa (GKJ) Salatiga">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Gereja Kristen Jawa (GKJ) Salatiga</h3>
+            <p class="text-justify">Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Bekas Rumah Keluarga Kartini">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 1 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Bekas Rumah Keluarga Kartini</h3>
+            <p class="text-justify">Rumah bersejarah yang terkait dengan tokoh nasional.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 12 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Gereja Katolik Santo Paulus Miki">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Gereja Katolik Santo Paulus Miki</h3>
+            <p class="text-justify">Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 13 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Bekas Rumah Hartini">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Bekas Rumah Hartini</h3>
+            <p class="text-justify">Rumah bersejarah dengan nilai penting dalam sejarah lokal.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 14 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="KB-TK-SD Kanisius Cungkup Salatiga">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>KB-TK-SD Kanisius Cungkup Salatiga</h3>
+            <p class="text-justify">Institusi pendidikan bersejarah dengan nilai budaya.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 15 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Batalyon Infanteri 411">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Batalyon Infanteri 411</h3>
+            <p class="text-justify">Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 16 -->
+    <div class="tour-card" data-category="special">
+        <div class="card-image">
+            <img src="https://via.placeholder.com/400x300" alt="Makam Kyai Abdul Wahid">
+            <div class="badge-time">
+                <span class="material-symbols-outlined">schedule</span> 2 Jam
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-location">
+                <span class="material-symbols-outlined">location_on</span> Special
+            </div>
+            <h3>Makam Kyai Abdul Wahid</h3>
+            <p class="text-justify">Makam tokoh agama dengan nilai spiritual dan sejarah.</p>
+            <div class="card-footer">
+                <div class="price-box">
+                    <span>Mulai Dari</span>
+                    <div class="price">Rp 200.000</div>
+                </div>
+                <button class="card-btn-arrow" onclick="window.location.href='tripbooking.html'">
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- PAGINATION SECTION -->
+
+    <div id="trip-pagination" class="trip-pagination-container">
+        <button class="trip-pagination-arrow trip-prev-btn">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        
+        <div id="trip-page-numbers" class="trip-page-numbers-wrapper"></div>
+
+        <button class="trip-pagination-arrow trip-next-btn">
+            <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+    </div>
+
+ <!-- FOOTER SECTION -->
+  <footer class="footer">
+  <div class="footer-inner-container">
+    <div class="footer-content">
+      
+      <div class="footer-section about">
+        <div class="footer-logo">
+          <a href="index.html" class="logo">
+            <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+          </a>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61575501765588" target="_blank" rel="noopener" title="Follow us on Facebook"><i class='bx bxl-facebook-circle'></i></a>
+          <a href="https://www.instagram.com/telusur.kota" target="_blank" rel="noopener" title="Follow us on Instagram"><i class='bx bxl-instagram'></i></a>
+          <a href="https://www.tiktok.com/@telusur.kota" target="_blank" rel="noopener" title="Follow us on TikTok"><i class='bx bxl-tiktok'></i></a>     
+          <a href="https://api.whatsapp.com/send/?phone=6285117159954&text&type=phone_number&app_absent=0" target="_blank" rel="noopener" title="Contact us on WhatsApp"><i class='bx bxl-whatsapp'></i></a>        
+        </div>
+      </div>
+
+      <div class="footer-section contact">
+        <h3>Kontak Kami</h3>
+        <ul>
+          <li><i class='bx bx-map'></i> Salatiga, Central Java</li>
+          <li><i class='bx bx-envelope'></i> temantelusur@gmail.com</li>
+          <li><i class='bx bx-phone'></i> (62) 85117159954</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright-bottom">
+      <p>© 2026 Telusur Kota. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    // Apply category filter from beranda navigation
+    // Wait for main script.js to initialize first
+    function applyFilterFromSession() {
+      const selectedCategory = sessionStorage.getItem('selectedTemaCategory');
+      
+      if (!selectedCategory) {
+        console.log('ℹ️ Tidak ada kategori yang diteruskan dari beranda');
+        return;
+      }
+      
+      console.log('✓ Kategori dari beranda:', selectedCategory);
+      
+      // Find and click the matching filter button
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      let found = false;
+      
+      filterBtns.forEach(btn => {
+        const btnCategory = btn.getAttribute('data-filter').toLowerCase();
+        if (btnCategory === selectedCategory.toLowerCase()) {
+          // Trigger click event to filter
+          btn.click();
+          found = true;
+          console.log('✓ Filter diterapkan:', selectedCategory);
+        }
+      });
+      
+      if (!found) {
+        console.warn('⚠️ Kategori tidak ditemukan:', selectedCategory);
+      }
+      
+      // Clear the session storage after use to prevent re-filtering on page reload
+      sessionStorage.removeItem('selectedTemaCategory');
+    }
+
+    // Wait for DOM and main script to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        // Wait a bit more for script.js to fully initialize
+        setTimeout(applyFilterFromSession, 200);
+      });
+    } else {
+      // If already loaded
+      setTimeout(applyFilterFromSession, 200);
+    }
+  </script>
+</body>
+</html>

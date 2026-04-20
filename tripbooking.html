@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Tour - Telusur Kota</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    
+    <link rel="stylesheet" href="booking-style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+</head>
+<body>
+
+    <div class="tour-map-bg"></div>
+
+    <div class="tour-main-container">
+        <header class="tour-form-header">
+            <h1>Pendaftaran Tour Telusur Kota</h1>
+            <p id="tour-headerSubtitle">Isi data diri dan pilih kategori tur Anda.</p>
+        </header>
+
+        <!-- STEPPER PROGRESS INDICATOR -->
+        <div class="tour-stepper-wrapper">
+            <div class="tour-stepper-item tour-active" data-step="1">
+                <div class="tour-step-counter">1</div>
+                <div class="tour-step-name">Data & Kategori</div>
+            </div>
+            <div class="tour-stepper-item" data-step="2">
+                <div class="tour-step-counter">2</div>
+                <div class="tour-step-name">Pembayaran</div>
+            </div>
+            <div class="tour-stepper-item" data-step="3">
+                <div class="tour-step-counter">3</div>
+                <div class="tour-step-name">Konfirmasi</div>
+            </div>
+        </div>
+
+        <!-- FORM CONTAINER -->
+        <form id="tour-bookingForm">
+            
+            <!-- ===== STEP 1: DATA & KATEGORI ===== -->
+            <div class="tour-form-step" data-step="1">
+                
+                <div class="tour-form-panel tour-glass">
+                    <h2><i class='bx bx-user-pin'></i> Data Diri</h2>
+                    
+                    <div class="tour-input-group">
+                        <label>Nama Lengkap</label>
+                        <div class="tour-input-wrapper">
+                            <i class='bx bx-user'></i>
+                            <input type="text" id="tour-fullName" name="fullName" placeholder="Masukkan Nama Lengkap" required>
+                        </div>
+                    </div>
+
+                    <div class="tour-input-group">
+                        <label>Nomor WhatsApp</label>
+                        <div class="tour-input-wrapper">
+                            <input type="tel" id="tour-whatsapp" name="whatsapp" placeholder="821 234 5678" required>
+                        </div>
+                    </div>
+
+                    <div class="tour-input-group">
+                        <label>Email</label>
+                        <div class="tour-input-wrapper">
+                            <i class='bx bx-envelope'></i>
+                            <input type="email" id="tour-email" name="email" placeholder="contoh@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="tour-input-group">
+                        <label>Kota Asal</label>
+                        <div class="tour-input-wrapper">
+                            <i class='bx bx-map-pin'></i>
+                            <input type="text" id="tour-cityOrigin" name="cityOrigin" placeholder="Contoh: Semarang" required>
+                        </div>
+                    </div>
+
+                    <div class="tour-input-group">
+                        <label>Akun Instagram</label>
+                        <div class="tour-input-wrapper">
+                            <i class='bx bxl-instagram'></i>
+                            <input type="text" id="tour-instagram" name="instagram" placeholder="username" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-form-panel tour-glass">
+                    <h2><i class='bx bx-medal'></i> Pilih Kategori Tour</h2>
+                    <p class="tour-panel-subtitle">Pilih kategori tur yang sesuai dengan preferensi Anda.</p>
+                    
+                    <div class="tour-category-cards">
+                        <div class="tour-category-card" data-category="regular">
+                            <i class='bx bx-walk'></i>
+                            <span>Regular</span>
+                            <small>Tour standar dengan pemandu</small>
+                        </div>
+                        <div class="tour-category-card" data-category="special">
+                            <i class='bx bx-star'></i>
+                            <span>Special</span>
+                            <small>Paket eksklusif terpilih</small>
+                        </div>
+                        <div class="tour-category-card" data-category="private">
+                            <i class='bx bx-diamond'></i>
+                            <span>Private</span>
+                            <small>Tur pribadi eksklusif</small>
+                        </div>
+                        <div class="tour-category-card" data-category="education">
+                            <i class='bx bx-book-reader'></i>
+                            <span>Education</span>
+                            <small>Tur edukatif berkelanjutan</small>
+                        </div>
+                    </div>
+                    <input type="hidden" id="tour-selectedCategory" name="selectedCategory" required>
+                </div>
+
+                <!-- DYNAMIC PANELS FOR LOCATION / CUSTOM REQUEST -->
+                <div id="tour-dynamicLocationList" class="tour-form-panel tour-glass tour-dynamic-panel tour-hidden">
+                    <h2><i class='bx bx-map-alt'></i> Pilih Lokasi Tour</h2>
+                    <p class="tour-panel-subtitle">Tema sudah ditentukan, silakan pilih lokasi yang tersedia.</p>
+                    
+                    <div class="tour-location-cards-grid">
+                        <div class="tour-location-card" data-location-id="101">
+                            <img src="https://via.placeholder.com/300x180?text=Hotel+Mutiara" alt="Hotel Mutiara">
+                            <div class="tour-card-details">
+                                <h3>Hotel Mutiara</h3>
+                                <span class="tour-durasi"><i class='bx bx-time'></i> 3 Jam</span>
+                                <span class="tour-harga">Rp 100.000 / orang</span>
+                            </div>
+                            <i class='bx bx-check-circle tour-select-icon'></i>
+                        </div>
+                        <div class="tour-location-card" data-location-id="102">
+                            <img src="https://via.placeholder.com/300x180?text=Pasar+Gede" alt="Pasar Gede">
+                            <div class="tour-card-details">
+                                <h3>Pasar Gede & Kuliner</h3>
+                                <span class="tour-durasi"><i class='bx bx-time'></i> 4 Jam</span>
+                                <span class="tour-harga">Rp 120.000 / orang</span>
+                            </div>
+                            <i class='bx bx-check-circle tour-select-icon'></i>
+                        </div>
+                    </div>
+                    <input type="hidden" id="tour-selectedLocation" name="selectedLocation">
+                </div>
+
+                <div id="tour-dynamicCustomRequest" class="tour-form-panel tour-glass tour-dynamic-panel tour-hidden">
+                    <h2><i class='bx bx-edit-alt'></i> Usulkan Rute Anda</h2>
+                    <p class="tour-panel-subtitle">Tuliskan destinasi, tema, atau permintaan khusus Anda.</p>
+                    <div class="tour-input-group">
+                        <textarea id="tour-customRoute" name="customRoute" rows="6" placeholder="Contoh: Saya ingin tur sejarah kolonial Salatiga..."></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== STEP 2: PEMBAYARAN ===== -->
+            <div class="tour-form-step tour-hidden" data-step="2">
+                
+                <div class="tour-form-panel tour-glass">
+                    <h2><i class='bx bx-credit-card-front'></i> Metode Pembayaran</h2>
+                    <p class="tour-panel-subtitle">Pilih metode pembayaran yang paling memudahkan Anda.</p>
+                    
+                    <div class="tour-payment-grid">
+                        <div class="tour-payment-method-card" data-payment="va">
+                            <div class="tour-method-header">
+                                <i class='bx bxs-bank'></i>
+                                <span>Virtual Account</span>
+                            </div>
+                            <div class="tour-bank-logos">
+                                <img src="https://upload.wikimedia.org/wikipedia/id/thumb/e/e0/BCA_logo.svg/1280px-BCA_logo.svg.png" alt="BCA">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/2560px-Bank_Mandiri_logo_2016.svg.png" alt="Mandiri">
+                                <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png" alt="BNI">
+                            </div>
+                            <p class="tour-method-desc">Transfer melalui ATM atau m-Banking.</p>
+                        </div>
+
+                        <div class="tour-payment-method-card" data-payment="qris">
+                            <div class="tour-method-header">
+                                <i class='bx bx-qr-scan'></i>
+                                <span>QRIS / E-Wallet</span>
+                            </div>
+                            <div class="tour-qris-logo-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/1200px-Logo_QRIS.svg.png" alt="QRIS">
+                            </div>
+                            <p class="tour-method-desc">Scan menggunakan GoPay, OVO, ShopeePay, atau m-Banking.</p>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" id="tour-selectedPayment" name="selectedPayment" required>
+                </div>
+
+            </div>
+
+            <!-- ===== STEP 3: KONFIRMASI ===== -->
+            <div class="tour-form-step tour-hidden" data-step="3">
+                
+                <div class="tour-form-panel tour-glass">
+                    <h2><i class='bx bx-checkbox-checked'></i> Ringkasan Pendaftaran</h2>
+                    <p class="tour-panel-subtitle">Periksa kembali data Anda sebelum menyelesaikan pendaftaran.</p>
+                    
+                    <div class="tour-summary-grid">
+                        <div class="tour-summary-item">
+                            <label>Nama Lengkap</label>
+                            <p id="tour-summaryName">-</p>
+                        </div>
+                        <div class="tour-summary-item">
+                            <label>Email</label>
+                            <p id="tour-summaryEmail">-</p>
+                        </div>
+                        <div class="tour-summary-item">
+                            <label>Nomor WhatsApp</label>
+                            <p id="tour-summaryPhone">-</p>
+                        </div>
+                        <div class="tour-summary-item">
+                            <label>Kota Asal</label>
+                            <p id="tour-summaryCity">-</p>
+                        </div>
+                        <div class="tour-summary-item">
+                            <label>Instagram</label>
+                            <p id="tour-summaryInstagram">-</p>
+                        </div>
+                        <div class="tour-summary-item">
+                            <label>Kategori Tour</label>
+                            <p id="tour-summaryCategory">-</p>
+                        </div>
+                        <div class="tour-summary-item" id="tour-summaryLocationDiv" style="display: none;">
+                            <label>Lokasi</label>
+                            <p id="tour-summaryLocation">-</p>
+                        </div>
+                        <div class="tour-summary-item" id="tour-summaryCustomDiv" style="display: none;">
+                            <label>Permintaan Khusus</label>
+                            <p id="tour-summaryCustom">-</p>
+                        </div>
+                        <div class="tour-summary-item">
+                            <label>Metode Pembayaran</label>
+                            <p id="tour-summaryPayment">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-form-panel tour-glass">
+                    <h2><i class='bx bx-info-circle'></i> Informasi Penting</h2>
+                    <div class="tour-info-box">
+                        <p><strong>✓ Verifikasi Data:</strong> Pastikan semua informasi di atas sudah benar.</p>
+                        <p><strong>✓ Notifikasi:</strong> Anda akan menerima SMS dan Email konfirmasi.</p>
+                        <p><strong>✓ Pembayaran:</strong> Silakan lakukan pembayaran sesuai metode yang dipilih.</p>
+                        <p><strong>✓ Dukungan:</strong> Hubungi kami jika ada pertanyaan atau perubahan data.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FORM ACTIONS / BUTTONS -->
+            <div class="tour-form-actions">
+                <button type="button" id="tour-btnBack" class="tour-btn-secondary tour-hidden">
+                    <i class='bx bx-left-arrow-alt'></i> Kembali
+                </button>
+                <button type="button" id="tour-btnNext" class="tour-btn-primary">
+                    Lanjut <i class='bx bx-right-arrow-alt'></i>
+                </button>
+                <button type="submit" id="tour-btnSubmit" class="tour-btn-primary tour-hidden">
+                    Selesai <i class='bx bx-check'></i>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="booking.js"></script>
+</body>
+</html>

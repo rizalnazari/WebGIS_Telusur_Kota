@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Berhasil - Telusur Kota</title>
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tour-success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e3f2fd 100%);
+        }
+
+        .tour-success-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            animation: tour-fadeInUp 0.6s ease;
+        }
+
+        .tour-success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--success-color) 0%, #20c997 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            color: white;
+            animation: tour-scaleIn 0.6s ease;
+        }
+
+        .tour-success-card h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .tour-success-card .tour-reference-number {
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(32, 201, 151, 0.1) 100%);
+            border: 2px dashed var(--success-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .tour-reference-number label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .tour-reference-number .tour-id {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--success-color);
+            word-break: break-all;
+        }
+
+        .tour-success-message {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .tour-next-steps {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.05) 0%, rgba(0, 123, 255, 0.02) 100%);
+            border-left: 4px solid var(--primary-blue);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .tour-next-steps h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+            font-size: 1rem;
+        }
+
+        .tour-next-steps ol {
+            margin-left: 20px;
+            color: var(--text-dark);
+        }
+
+        .tour-next-steps li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .tour-action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tour-btn-home {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0056b3 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .tour-btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .tour-btn-copy {
+            background: #f0f0f0;
+            color: var(--text-dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 2px solid #ddd;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .tour-btn-copy:hover {
+            background: #e0e0e0;
+            border-color: var(--primary-blue);
+        }
+
+        .tour-btn-copy.copied {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .tour-contact-info {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .tour-contact-info p {
+            margin: 8px 0;
+        }
+
+        .tour-contact-info strong {
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .tour-success-card {
+                padding: 30px 20px;
+            }
+
+            .tour-success-card h1 {
+                font-size: 1.6rem;
+            }
+
+            .tour-reference-number .tour-id {
+                font-size: 1.4rem;
+            }
+
+            .tour-action-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .tour-btn-home,
+            .tour-btn-copy {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tour-success-container">
+        <div class="tour-success-card">
+            <!-- Success Icon -->
+            <div class="tour-success-icon">
+                <i class='bx bx-check'></i>
+            </div>
+
+            <!-- Main Message -->
+            <h1>Pemesanan Berhasil!</h1>
+            
+            <!-- Reference Number -->
+            <div class="tour-reference-number">
+                <label>Nomor Referensi Pemesanan Anda</label>
+                <div class="tour-id" id="bookingIdDisplay">-</div>
+            </div>
+
+            <!-- Success Message -->
+            <div class="tour-success-message">
+                <p>Terima kasih telah memesan tur bersama Telusur Kota!</p>
+                <p>Kami telah mengirimkan konfirmasi pemesanan ke email Anda. Silakan periksa folder inbox atau spam.</p>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="tour-next-steps">
+                <h3><i class='bx bx-list-check'></i> Langkah Selanjutnya</h3>
+                <ol>
+                    <li>Tunggu konfirmasi dari tim kami melalui WhatsApp dalam waktu 1x24 jam</li>
+                    <li>Ikuti petunjuk pembayaran yang sudah dikirimkan ke email</li>
+                    <li>Setelah pembayaran dikonfirmasi, kami akan mengirimkan detail perjalanan lengkap</li>
+                    <li>Nikmati pengalaman tur yang tak terlupakan bersama Telusur Kota!</li>
+                </ol>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="tour-action-buttons">
+                <button class="tour-btn-copy" id="copyBtn" onclick="copyBookingId()">
+                    <i class='bx bx-copy'></i> Salin Nomor Referensi
+                </button>
+                <a href="index.html" class="tour-btn-home">
+                    <i class='bx bx-home'></i> Kembali ke Form
+                </a>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="tour-contact-info">
+                <p>Pertanyaan? Hubungi kami:</p>
+                <p><strong>WhatsApp:</strong> +62 812-3456-7890</p>
+                <p><strong>Email:</strong> info@telusur-kota.com</p>
+                <p style="font-size: 0.8rem; margin-top: 15px; color: #999;">
+                    Jadwalkan perjalanan Anda hari ini dan jelajahi keindahan kota bersama kami!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Populate booking ID from sessionStorage or URL
+        function initializeBookingId() {
+            let bookingId = sessionStorage.getItem('bookingId');
+            
+            // Fallback to URL parameter if not in sessionStorage
+            if (!bookingId) {
+                const urlParams = new URLSearchParams(window.location.search);
+                bookingId = urlParams.get('id');
+            }
+
+            if (bookingId) {
+                document.getElementById('bookingIdDisplay').textContent = bookingId;
+            } else {
+                document.getElementById('bookingIdDisplay').textContent = 'ID tidak ditemukan';
+            }
+        }
+
+        // Copy booking ID to clipboard
+        function copyBookingId() {
+            const bookingId = document.getElementById('bookingIdDisplay').textContent;
+            
+            if (bookingId === 'ID tidak ditemukan') {
+                alert('Nomor referensi tidak tersedia');
+                return;
+            }
+
+            navigator.clipboard.writeText(bookingId).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="bx bx-check"></i> Tersalin!';
+                
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeBookingId);
+    </script>
+</body>
+</html>
