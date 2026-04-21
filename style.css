@@ -117,7 +117,7 @@ body {
   display: flex; 
   gap: 25px; 
   align-items: center; 
-  z-index: 999;
+  z-index: 1001;
 }
 
 .navbar a {
@@ -699,12 +699,12 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    z-index: 999;
+    z-index: 1001;
   }
 
   .navbar.active {
     max-height: 400px;
-    z-index: 999;
+    z-index: 1001;
     overflow-y: auto;
   }
 
@@ -722,7 +722,7 @@ body {
     height: 35vh;
     min-height: 240px;
     margin: 10px auto;
-    border-radius: 12px;
+    border-radius: clamp(8px, 3vw, 12px);
     padding: 0 2%;
   }
 
@@ -908,12 +908,12 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    z-index: 999;
+    z-index: 1001;
   }
 
   .navbar.active {
     max-height: 350px;
-    z-index: 999;
+    z-index: 1001;
     overflow-y: auto;
   }
 
@@ -1004,6 +1004,12 @@ body {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 20px;
     padding: 0 5%;
+  }
+
+  /* Side Panel */
+  .side-panel {
+    max-height: 50vh;
+    z-index: 50;
   }
 
   /* Section Title */
@@ -2832,16 +2838,37 @@ body {
   .side-panel {
     width: 100%;
     height: auto;
-    max-height: 70vh;
+    max-height: 50vh;
     border-radius: 25px 25px 0 0;
     position: fixed;
     bottom: 0;
     left: 0;
     top: auto;
+    z-index: 50;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .side-panel-header {
     padding: 20px;
+    position: relative;
+  }
+
+  .side-panel-header::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: #d0d0d0;
+    border-radius: 2px;
+    cursor: grab;
+  }
+
+  .side-panel-header::before:active {
+    cursor: grabbing;
   }
 
   .content-list {
