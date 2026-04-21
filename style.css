@@ -300,8 +300,9 @@ body {
 
 .filter-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     margin-bottom: 40px;
     padding: 10px;
 }
@@ -702,14 +703,17 @@ body {
   }
 
   .navbar.active {
-    max-height: 300px;
+    max-height: 400px;
     z-index: 999;
+    overflow-y: auto;
   }
 
   .navbar a {
     padding: 15px 20px;
     border-bottom: 1px solid var(--border-color);
     font-size: 13px;
+    white-space: nowrap;
+    display: block;
   }
 
   /* Hero Section - OPTIMIZED FOR MOBILE */
@@ -792,9 +796,9 @@ body {
   /* Card Grid */
   #tour-grid,
   .card-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr !important;
     gap: 15px;
-    padding: 0 5%;
+    padding: 0 3%;
   }
 
   .card {
@@ -802,31 +806,52 @@ body {
   }
 
   .card-body h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .card-body p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .tour-card .card-image {
+    height: 180px;
+  }
+
+  .tour-card .badge-time {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .price-box .price {
+    font-size: 1.1rem;
   }
 
   /* Buttons */
   .tab-btn,
-  .filter-btn {
-    padding: 8px 15px;
-    font-size: 12px;
+  .filter-btn {\n    padding: 8px 12px;\n    font-size: 11px;\n    flex: 0 1 auto;\n    min-width: 80px;\n  }
+
+  .filter-container {
+    gap: 8px;
+    padding: 8px;
   }
 
   .tabs-filter-row,
   .tabs-row {
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
   }
 
   /* Section Titles */
   .section-title,
   .page-section-title h2 {
     font-size: clamp(1.3rem, 5vw, 2rem);
-    padding: 0 5%;
+    padding: 0 3%;
+  }
+
+  .page-section-title {
+    padding: 0 3%;
   }
 
   /* Footer */
@@ -889,6 +914,7 @@ body {
   .navbar.active {
     max-height: 350px;
     z-index: 999;
+    overflow-y: auto;
   }
 
   .navbar a {
@@ -962,11 +988,22 @@ body {
     padding: 0 5%;
   }
 
-  /* Buttons */
-  .tab-btn,
+  .filter-container {
+    gap: 8px;
+    padding: 8px 3%;
+  }
+
   .filter-btn {
     padding: 10px 20px;
     font-size: 13px;
+  }
+
+  /* Grid */
+  #tour-grid,
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px;
+    padding: 0 5%;
   }
 
   /* Section Title */
@@ -2769,7 +2806,7 @@ body {
   .panel-left,
   .panel-right {
     width: 100%;
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 16px);
     position: relative;
     top: auto !important;
     left: auto !important;
@@ -2779,22 +2816,23 @@ body {
 
   .feature-popup {
     width: 100%;
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 16px);
     top: auto !important;
     bottom: 10px !important;
-    left: 16px !important;
+    left: 8px !important;
     right: auto !important;
+    font-size: 0.9rem;
   }
 
   .panel-body {
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
   }
 
   .side-panel {
     width: 100%;
     height: auto;
-    max-height: 60vh;
+    max-height: 70vh;
     border-radius: 25px 25px 0 0;
     position: fixed;
     bottom: 0;
