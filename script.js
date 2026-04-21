@@ -83,6 +83,15 @@ window.navigateToTematrip = function(category) {
 // ================= END GLOBAL UTILITIES =================
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ================= LANGUAGE SWITCHER =================
+  const langBtns = document.querySelectorAll('.lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const lang = this.getAttribute('data-lang');
+      setLanguage(lang);
+    });
+  });
+  
   // DRAG TO CLOSE SIDE PANEL (Mobile UX)
   const sidePanel = document.querySelector('.side-panel');
   const sidePanelHeader = document.querySelector('.side-panel-header');

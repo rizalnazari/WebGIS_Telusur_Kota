@@ -9,12 +9,43 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile-enhancements.css">
     <style>
+        .booking-success-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--header-bg);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 10px 0;
+        }
+
+        .booking-success-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .booking-success-logo img {
+            height: 40px;
+        }
+
+        body {
+            padding-top: 60px;
+        }
+
         .tour-success-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--bg-light) 0%, #e3f2fd 100%);
+            padding-top: 0;
         }
 
         .tour-success-card {
@@ -201,6 +232,21 @@
     </style>
 </head>
 <body>
+    <!-- BOOKING SUCCESS HEADER WITH LANGUAGE SWITCHER -->
+    <header class="booking-success-header">
+        <div class="booking-success-header-container">
+            <a href="index.html" class="booking-success-logo">
+                <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+            </a>
+            
+            <!-- Language Switcher for Booking Success -->
+            <div class="language-switcher booking-lang-switcher">
+                <button class="lang-btn active" data-lang="id" title="Bahasa Indonesia">ID</button>
+                <button class="lang-btn" data-lang="en" title="English">EN</button>
+            </div>
+        </div>
+    </header>
+
     <div class="tour-success-container">
         <div class="tour-success-card">
             <!-- Success Icon -->
@@ -209,7 +255,7 @@
             </div>
 
             <!-- Main Message -->
-            <h1>Pemesanan Berhasil!</h1>
+            <h1 id="success-title">Pemesanan Berhasil!</h1>
             
             <!-- Reference Number -->
             <div class="tour-reference-number">
@@ -256,6 +302,7 @@
         </div>
     </div>
 
+    <script src="translations.js"></script>
     <script>
         // Populate booking ID from sessionStorage or URL
         function initializeBookingId() {
@@ -270,16 +317,21 @@
             if (bookingId) {
                 document.getElementById('bookingIdDisplay').textContent = bookingId;
             } else {
-                document.getElementById('bookingIdDisplay').textContent = 'ID tidak ditemukan';
+                const lang = getCurrentLanguage();
+                document.getElementById('bookingIdDisplay').textContent = lang === 'id' ? 'ID tidak ditemukan' : 'ID not found';
             }
         }
 
         // Copy booking ID to clipboard
         function copyBookingId() {
             const bookingId = document.getElementById('bookingIdDisplay').textContent;
+            const lang = getCurrentLanguage();
+            const notFoundText = lang === 'id' ? 'ID tidak ditemukan' : 'ID not found';
+            const alertText = lang === 'id' ? 'Nomor referensi tidak tersedia' : 'Reference number not available';
+            const copiedText = lang === 'id' ? '<i class="bx bx-check"></i> Tersalin!' : '<i class="bx bx-check"></i> Copied!';
             
-            if (bookingId === 'ID tidak ditemukan') {
-                alert('Nomor referensi tidak tersedia');
+            if (bookingId === notFoundText) {
+                alert(alertText);
                 return;
             }
 
@@ -288,7 +340,7 @@
                 const originalText = btn.innerHTML;
                 
                 btn.classList.add('copied');
-                btn.innerHTML = '<i class="bx bx-check"></i> Tersalin!';
+                btn.innerHTML = copiedText;
                 
                 setTimeout(() => {
                     btn.classList.remove('copied');
@@ -297,8 +349,33 @@
             });
         }
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', initializeBookingId);
+        // Update success page translations
+        function updateSuccessTranslations(lang) {
+            const titleEl = document.getElementById('success-title');
+            if (titleEl) {
+                titleEl.textContent = lang === 'id' ? 'Pemesanan Berhasil!' : 'Booking Successful!';
+            }
+        }
+
+        // Handle language switching on success page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeBookingId();
+            
+            // Language switcher buttons
+            const langBtns = document.querySelectorAll('.booking-lang-switcher .lang-btn');
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                    updateSuccessTranslations(lang);
+                });
+            });
+        });
+        
+        // Listen for language changes
+        window.addEventListener('languageChanged', function(event) {
+            updateSuccessTranslations(event.detail.language);
+        });
     </script>
     <script src="mobile-enhancements.js"></script>
 </body>

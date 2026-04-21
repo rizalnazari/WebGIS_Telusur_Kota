@@ -55,11 +55,17 @@
       </a>
 
       <nav class="navbar" id="navbar">
-        <a href="index.html" >BERANDA</a>
-        <a href="tematrip.html">TEMA TRIP</a>
-        <a href="map.html" >STORY MAPS</a>
-        <a href="tourismmaps.html" class="active">TOURISM MAPS</a>
-        <a href="profile.html">TENTANG KAMI</a>
+        <a href="index.html" id="nav-beranda">BERANDA</a>
+        <a href="tematrip.html" id="nav-tematrip">TEMA TRIP</a>
+        <a href="map.html" id="nav-storymap">STORY MAPS</a>
+        <a href="tourismmaps.html" class="active" id="nav-tourismmaps">TOURISM MAPS</a>
+        <a href="profile.html" id="nav-tentangkami">TENTANG KAMI</a>
+        
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="id" title="Bahasa Indonesia">ID</button>
+          <button class="lang-btn" data-lang="en" title="English">EN</button>
+        </div>
       </nav>
 
       <!-- Hamburger Menu for Mobile -->
@@ -230,6 +236,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
     <!-- Custom JS -->
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 
 </body>
