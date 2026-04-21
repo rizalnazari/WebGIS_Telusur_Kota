@@ -2382,7 +2382,7 @@ main .map-container {
     overflow: visible;
     margin-top: 70px;
 
-    background-image: url('DOKUMENTASI/ABOUT%20US/IMG_3628.JPG');
+    background-image: url('DOKUMENTASI/ABOUT%20US/IMG_3628.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2495,7 +2495,7 @@ body {
 /* Mission Section (Image Background) */
 .mission-section {
     position: relative;
-    background-image: url('DOKUMENTASI/ABOUT%20US/IMG_8617.JPG');
+    background-image: url('DOKUMENTASI/ABOUT%20US/IMG_8617.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -2548,7 +2548,7 @@ body {
 /* Review Section */
 .review-section {
     position: relative;
-    background-image:  url('DOKUMENTASI/ABOUT%20US/IMG_0246.JPG');
+    background-image:  url('DOKUMENTASI/ABOUT%20US/IMG_0246.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

@@ -606,32 +606,55 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mapElement && typeof L !== 'undefined') {
     // LAYER DEFINITIONS
     const cartoVoyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO'
-    });
-
-    const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">HOT</a>',
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
       maxZoom: 19
     });
 
-    const esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; Esri'
+    const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+      minZoom: 1
     });
 
-    // MAP INITIALIZATION
-    window.map = L.map('map', {
-      zoomControl: false,
-      scrollWheelZoom: true,
-      dragging: true,
-      doubleClickZoom: true,
-      boxZoom: true,
-      keyboard: true,
-      keyboardPanDelta: 80,
-      layers: []
-    }).setView([-7.3275, 110.5050], 16);
+    const esriSatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri',
+      maxZoom: 18
+    });
 
-    osmLayer.addTo(map);
-    setTimeout(() => map.invalidateSize(), 200);
+    // MAP INITIALIZATION WITH IMPROVED ERROR HANDLING
+    try {
+      window.map = L.map('map', {
+        zoomControl: false,
+        scrollWheelZoom: true,
+        dragging: true,
+        doubleClickZoom: true,
+        boxZoom: true,
+        keyboard: true,
+        keyboardPanDelta: 80,
+        layers: [],
+        preferCanvas: true
+      }).setView([-7.3275, 110.5050], 16);
+
+      // Add basemap immediately
+      osmLayer.addTo(window.map);
+      
+      // Ensure map size is correct
+      setTimeout(() => {
+        if (window.map) {
+          window.map.invalidateSize(true);
+          console.log('✓ Map initialized successfully');
+        }
+      }, 100);
+      
+      setTimeout(() => {
+        if (window.map && window.map.getZoom) {
+          window.map.invalidateSize(true);
+        }
+      }, 500);
+      
+    } catch (error) {
+      console.error('Error initializing map:', error);
+    }
 
     // BASEMAP SWITCHER
     const baseMaps = {
@@ -644,6 +667,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentBasemapIndex = 0;
 
     function switchBasemap(index = null) {
+      if (!window.map) return;
+      
       if (index !== null && !Number.isNaN(index)) {
         currentBasemapIndex = index;
       } else {
@@ -651,23 +676,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       basemapLayers.forEach(layer => {
-        if (map.hasLayer(layer)) {
-          map.removeLayer(layer);
+        if (window.map.hasLayer(layer)) {
+          window.map.removeLayer(layer);
         }
       });
 
-      basemapLayers[currentBasemapIndex].addTo(map);
-      console.log(`Basemap sekarang: ${Object.keys(baseMaps)[currentBasemapIndex]}`);
+      basemapLayers[currentBasemapIndex].addTo(window.map);
+      console.log(`✓ Basemap: ${Object.keys(baseMaps)[currentBasemapIndex]}`);
     }
 
-    console.log('Map initialized with controls:', {
-      dragging: map.dragging.enabled(),
-      scrollWheelZoom: map.scrollWheelZoom.enabled(),
-      doubleClickZoom: map.doubleClickZoom.enabled(),
-      keyboard: map.keyboard.enabled()
+    console.log('✓ Map controls initialized:', {
+      dragging: window.map.dragging.enabled(),
+      scrollWheelZoom: window.map.scrollWheelZoom.enabled(),
+      doubleClickZoom: window.map.doubleClickZoom.enabled(),
+      keyboard: window.map.keyboard.enabled()
     });
 
-    // INTEGRATED GEOJSON DATA
+    // INTEGRATED GEOJSON DATA WITH MARKERS RENDERING
     window.geojsonData = {
       "type": "FeatureCollection",
       "features": [
@@ -678,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Hotel Mutiara",
             "Toponimi": "Hotel",
             "Kategori": "regular",
-            "Img": "img/hotel-mutiara.jpg",
+            "Img": "img/hotel-mutiara.webp",
             "Desc": "Bagian penting dari sejarah akomodasi kota yang ikonik."
           },
           "geometry": { "type": "Point", "coordinates": [110.5036, -7.3275] }
@@ -690,7 +715,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Asistent Resident",
             "Toponimi": "Rumah Dinas",
             "Kategori": "regular",
-            "Img": "img/walikota.jpg",
+            "Img": "img/walikota.webp",
             "Desc": "Kini berfungsi sebagai Rumah Dinas Walikota Salatiga."
           },
           "geometry": { "type": "Point", "coordinates": [110.5055, -7.3270] }
@@ -702,7 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Rumah Dokter Hasmo",
             "Toponimi": "Rumah",
             "Kategori": "regular",
-            "Img": "img/rumah-hasmo.jpg",
+            "Img": "img/rumah-hasmo.webp",
             "Desc": "Arsitektur kolonial yang masih terjaga keasliannya."
           },
           "geometry": { "type": "Point", "coordinates": [110.5037, -7.3265] }
@@ -714,7 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Garasi ESTO",
             "Toponimi": "Food Court",
             "Kategori": "regular",
-            "Img": "img/esto.jpg",
+            "Img": "img/esto.webp",
             "Desc": "Bekas garasi bus legendaris yang kini menjadi pusat kuliner."
           },
           "geometry": { "type": "Point", "coordinates": [110.5039, -7.3276] }
@@ -726,7 +751,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "1915 Coffee",
             "Toponimi": "Coffee Shop",
             "Kategori": "regular",
-            "Img": "img/1915.jpg",
+            "Img": "img/1915.webp",
             "Desc": "Bangunan bersejarah tahun 1915 yang diubah menjadi cafe modern."
           },
           "geometry": { "type": "Point", "coordinates": [110.5085, -7.3278] }
@@ -738,7 +763,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Denhubrem 073 Hubdam IV/Dip",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/denhubrem.jpg",
+            "Img": "img/denhubrem.webp",
             "Desc": "Lokasi bersejarah dengan nilai khusus bagi sejarah militer."
           },
           "geometry": { "type": "Point", "coordinates": [110.494676100000049, -7.315366199999971] }
@@ -750,7 +775,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Kodim 0714 / Salatiga",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/kodim.jpg",
+            "Img": "img/kodim.webp",
             "Desc": "Lokasi bersejarah dengan nilai khusus bagi sejarah militer."
           },
           "geometry": { "type": "Point", "coordinates": [110.500573, -7.322423899999933] }
@@ -762,7 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Puri Makutarama",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/puri-makutarama.jpg",
+            "Img": "img/puri-makutarama.webp",
             "Desc": "Tempat istimewa dengan arsitektur dan nilai sejarah yang unik."
           },
           "geometry": { "type": "Point", "coordinates": [110.494211100000086, -7.316085099999952] }
@@ -774,7 +799,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Gereja Kristen Jawa (GKJ) Salatiga",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/gkj-salatiga.jpg",
+            "Img": "img/gkj-salatiga.webp",
             "Desc": "Tempat ibadah bersejarah dengan nilai budaya dan keagamaan."
           },
           "geometry": { "type": "Point", "coordinates": [110.49827, -7.32051] }
@@ -786,7 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Bekas Rumah Keluarga Kartini",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/rumah-kartini.jpg",
+            "Img": "img/rumah-kartini.webp",
             "Desc": "Rumah bersejarah yang terkait dengan tokoh nasional."
           },
           "geometry": { "type": "Point", "coordinates": [110.497931794000067, -7.320027718999938] }
@@ -798,7 +823,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Gereja Katolik Santo Paulus Miki",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/gereja-santo-paulus.jpg",
+            "Img": "img/gereja-santo-paulus.webp",
             "Desc": "Tempat ibadah bersejarah dengan nilai budaya dan keagamaan."
           },
           "geometry": { "type": "Point", "coordinates": [110.50148, -7.32229] }
@@ -810,7 +835,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Bekas Rumah Hartini",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/rumah-hartini.jpg",
+            "Img": "img/rumah-hartini.webp",
             "Desc": "Rumah bersejarah dengan nilai penting dalam sejarah lokal."
           },
           "geometry": { "type": "Point", "coordinates": [110.504151169000068, -7.324267906999978] }
@@ -822,7 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "KB-TK-SD Kanisius Cungkup Salatiga",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/kanisius-cungkup.jpg",
+            "Img": "img/kanisius-cungkup.webp",
             "Desc": "Institusi pendidikan bersejarah dengan nilai budaya."
           },
           "geometry": { "type": "Point", "coordinates": [110.50177, -7.32195] }
@@ -834,7 +859,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Batalyon Infanteri 411",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/batalyon.jpg",
+            "Img": "img/batalyon.webp",
             "Desc": "Lokasi bersejarah dengan nilai khusus bagi sejarah militer."
           },
           "geometry": { "type": "Point", "coordinates": [110.503522930000088, -7.33525750299998] }
@@ -846,7 +871,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Makam Kyai Abdul Wahid",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/makam-kyai.jpg",
+            "Img": "img/makam-kyai.webp",
             "Desc": "Makam tokoh agama dengan nilai spiritual dan sejarah."
           },
           "geometry": { "type": "Point", "coordinates": [110.52369, -7.35711] }
@@ -858,7 +883,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "Fungsi": "Masjid Al-Fudlola",
             "Toponimi": "Special",
             "Kategori": "special",
-            "Img": "img/masjid-al-fudlola.jpg",
+            "Img": "img/masjid-al-fudlola.webp",
             "Desc": "Tempat ibadah bersejarah dengan nilai budaya dan keagamaan."
           },
           "geometry": { "type": "Point", "coordinates": [110.5261, -7.3566] }
@@ -882,8 +907,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeFilters = new Set(['regular', 'special']);
 
     window.renderGeoJSON = function(filterFn = () => true) {
+      if (!window.map) {
+        console.warn('⚠️ Map not initialized yet');
+        return;
+      }
+      
       if (geojsonLayer) {
-        map.removeLayer(geojsonLayer);
+        window.map.removeLayer(geojsonLayer);
       }
 
       Object.keys(markerLayerGroup).forEach(id => delete markerLayerGroup[id]);
@@ -919,12 +949,17 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
           layer.bindPopup(popupContent);
           layer.on('click', function() {
-            map.flyTo(layer.getLatLng(), 18, { animate: true, duration: 1.5 });
+            if (window.map) {
+              window.map.flyTo(layer.getLatLng(), 18, { animate: true, duration: 1.5 });
+            }
           });
         }
-      }).addTo(map);
+      }).addTo(window.map);
+      
+      console.log(`✓ GeoJSON rendered with ${Object.keys(markerLayerGroup).length} markers`);
     };
 
+    // Render GeoJSON on initialization
     renderGeoJSON();
 
     // TOP LEFT CONTROLS
@@ -935,8 +970,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const basemapPanel = document.getElementById('basemapPanel');
     const basemapOptions = document.querySelectorAll('.basemap-option');
 
-    if (zoomInBtn) zoomInBtn.addEventListener('click', () => map.zoomIn());
-    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => map.zoomOut());
+    if (zoomInBtn) zoomInBtn.addEventListener('click', () => {
+      if (window.map) window.map.zoomIn();
+    });
+    
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => {
+      if (window.map) window.map.zoomOut();
+    });
+    
     if (locateBtn) {
       locateBtn.addEventListener('click', () => {
         if (!navigator.geolocation) {
@@ -947,15 +988,17 @@ document.addEventListener('DOMContentLoaded', () => {
           position => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-            map.flyTo([lat, lng], 16, { animate: true, duration: 1 });
-            L.marker([lat, lng], { title: 'Lokasi Saya' })
-              .addTo(map)
-              .bindPopup('📍 Lokasi Saya')
-              .openPopup();
+            if (window.map) {
+              window.map.flyTo([lat, lng], 16, { animate: true, duration: 1 });
+              L.marker([lat, lng], { title: 'Lokasi Saya' })
+                .addTo(window.map)
+                .bindPopup('📍 Lokasi Saya')
+                .openPopup();
+            }
           },
           () => {
             alert('Tidak dapat mendapatkan lokasi Anda. Menampilkan peta area default.');
-            map.flyTo([-7.3275, 110.5050], 15);
+            if (window.map) window.map.flyTo([-7.3275, 110.5050], 15);
           }
         );
       });
@@ -1015,20 +1058,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // GLOBAL ZOOM FUNCTION
     window.zoomToLocation = function(id) {
+      if (!window.map) {
+        console.warn('⚠️ Map not ready');
+        return;
+      }
+      
       const targetId = Number(id);
       const feature = window.geojsonData.features.find(f => f.properties.Id === targetId);
       
       if (feature) {
         const coords = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
-        map.closePopup();
-        map.flyTo(coords, 18, { animate: true, duration: 1.5 });
+        window.map.closePopup();
+        window.map.flyTo(coords, 18, { animate: true, duration: 1.5 });
         setTimeout(() => {
           if (markerLayerGroup[targetId]) {
             markerLayerGroup[targetId].openPopup();
           }
         }, 1600);
       } else {
-        console.error("Lokasi dengan ID " + id + " tidak ditemukan di GeoJSON.");
+        console.error("⚠️ Lokasi dengan ID " + id + " tidak ditemukan di GeoJSON.");
       }
     };
   }
@@ -1058,18 +1106,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tourismFeaturePopup) tourismFeaturePopup.classList.add('hidden');
     
     // Clean up route elements
-    if (window.routeLine && map) {
-      try { map.removeLayer(window.routeLine); } catch(e) {}
+    if (window.routeLine && window.map) {
+      try { window.map.removeLayer(window.routeLine); } catch(e) {}
       window.routeLine = null;
     }
     if (window.routeMarkers) {
       window.routeMarkers.forEach(marker => {
-        if (map) try { map.removeLayer(marker); } catch(e) {}
+        if (window.map) try { window.map.removeLayer(marker); } catch(e) {}
       });
       window.routeMarkers = [];
     }
-    if (window.myLocationMarkerRoute && map) {
-      try { map.removeLayer(window.myLocationMarkerRoute); } catch(e) {}
+    if (window.myLocationMarkerRoute && window.map) {
+      try { window.map.removeLayer(window.myLocationMarkerRoute); } catch(e) {}
       window.myLocationMarkerRoute = null;
     }
     
@@ -1079,9 +1127,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Restore all markers to visible
       window.geojsonMarkers.forEach((marker, featureId) => {
-        if (map) {
-          if (!map.hasLayer(marker)) {
-            marker.addTo(map);
+        if (window.map) {
+          if (!window.map.hasLayer(marker)) {
+            marker.addTo(window.map);
           }
           marker.setOpacity(1);
         }
@@ -1089,20 +1137,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Remove buffer circle
-    if (window.bufferCircle && map) {
-      try { map.removeLayer(window.bufferCircle); } catch(e) {}
+    if (window.bufferCircle && window.map) {
+      try { window.map.removeLayer(window.bufferCircle); } catch(e) {}
       window.bufferCircle = null;
     }
     
     // Remove nearby markers (origin marker)
     if (window.nearbyMarkers) {
       window.nearbyMarkers.forEach(marker => {
-        if (map) try { map.removeLayer(marker); } catch(e) {}
+        if (window.map) try { window.map.removeLayer(marker); } catch(e) {}
       });
       window.nearbyMarkers = [];
     }
-    if (window.myLocationMarkerNearby && map) {
-      try { map.removeLayer(window.myLocationMarkerNearby); } catch(e) {}
+    if (window.myLocationMarkerNearby && window.map) {
+      try { window.map.removeLayer(window.myLocationMarkerNearby); } catch(e) {}
       window.myLocationMarkerNearby = null;
     }
   }
