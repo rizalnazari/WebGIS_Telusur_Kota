@@ -172,10 +172,15 @@ body {
 
 .tour-glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-md);
+}
+
+/* Hidden Summary Items */
+.hidden-summary {
+    display: none;
 }
 
 .tour-form-panel h2 {
@@ -276,6 +281,23 @@ body {
 .tour-input-wrapper input#tour-instagram:focus {
     border-color: #E1306C;
     box-shadow: 0 0 0 3px rgba(225, 48, 108, 0.1);
+}
+
+/* INPUT ERROR STATES */
+.tour-input-wrapper input.error,
+.tour-input-group textarea.error {
+    border-color: var(--danger-color) !important;
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+.tour-input-wrapper input.error:focus,
+.tour-input-group textarea.error:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.tour-input-wrapper input.error::placeholder,
+.tour-input-group textarea.error::placeholder {
+    color: var(--danger-color);
 }
 
 /* ============================================

@@ -668,9 +668,10 @@ async function handleFormSubmit() {
             email: document.getElementById('tour-email').value.trim(),
             cityOrigin: document.getElementById('tour-cityOrigin').value.trim(),
             instagram: document.getElementById('tour-instagram').value.trim(),
-            category: selectedCategory || 'Tidak Dipilih',
-            location: selectedLocation || document.getElementById('tour-customRoute').value.trim() || 'Custom',
-            paymentMethod: selectedPayment || 'Tidak Dipilih',
+            selectedCategory: selectedCategory || 'Tidak Dipilih',
+            selectedLocation: selectedLocation || '',
+            customRoute: document.getElementById('tour-customRoute').value.trim() || '',
+            selectedPayment: selectedPayment || 'Tidak Dipilih',
             submittedAt: new Date().toISOString(),
             // Include selected tour information if available
             selectedTour: selectedTour ? {
@@ -758,6 +759,14 @@ Terima kasih telah memesan dengan Telusur Kota! 🙏
         } else {
             alert(`⚠️ Gagal terhubung ke server.\n\nPastikan:\n1. Backend berjalan di http://localhost:3000\n2. Koneksi internet aktif\n3. File .env sudah dikonfigurasi`);
         }
+    } finally {
+        // Reset button state
+        isSubmitting = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.style.opacity = '1';
+    }
+}
         
     } finally {
         // Re-enable submit button and restore original state
@@ -818,3 +827,68 @@ document.addEventListener('keydown', function(e) {
         logBookingData();
     }
 });
+
+/* ============================================
+   VALIDATION FUNCTIONS
+   ============================================ */
+
+/**
+ * Validate email format
+ */
+function isValidEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+}
+
+/**
+ * Validate phone number (basic - at least 10 digits)
+ */
+function isValidPhone(phone) {
+    const cleaned = phone.replace(/\D/g, '');
+    return cleaned.length >= 10 && cleaned.length <= 15;
+}
+
+/**
+ * Validate name (no numbers, min 3 chars)
+ */
+function isValidName(name) {
+    const trimmed = name.trim();
+    return trimmed.length >= 3 && !/\d/.test(trimmed);
+}
+
+/**
+ * Format phone number for WhatsApp
+ */
+function formatPhoneNumber(phone) {
+    let cleaned = phone.replace(/\D/g, '');
+    if (cleaned.startsWith('62')) {
+        return cleaned;
+    } else if (cleaned.startsWith('0')) {
+        return '62' + cleaned.substring(1);
+    } else {
+        return '62' + cleaned;
+    }
+}
+
+/**
+ * Show form validation error with highlight
+ */
+function showFieldError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    if (field) {
+        field.classList.add('error');
+        field.setAttribute('title', message);
+        console.warn(`❌ ${fieldId}: ${message}`);
+    }
+}
+
+/**
+ * Clear field error
+ */
+function clearFieldError(fieldId) {
+    const field = document.getElementById(fieldId);
+    if (field) {
+        field.classList.remove('error');
+        field.removeAttribute('title');
+    }
+}
