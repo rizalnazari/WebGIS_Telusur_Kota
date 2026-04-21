@@ -43,7 +43,7 @@
     <div id="map"></div>
 
     <!-- TOP LEFT CONTROLS -->
-<div class="absolute top-20 left-[390px] z-30 flex flex-col gap-1 items-start transition-all duration-300">
+<div class="absolute top-10 left-[390px] z-30 flex flex-col gap-1 items-start transition-all duration-300">
   <div class="bg-white/90 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-1 p-1">
     
     <button id="zoomInBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-xl" aria-label="Zoom In">
@@ -74,8 +74,13 @@
   </div>
 </div>
 
+    <!-- SIDE PANEL TOGGLE BUTTON -->
+    <button id="sidebarToggleBtn" class="sidebar-toggle-btn" aria-label="Toggle Sidebar" title="Buka/Tutup Sidebar">
+      <i class='bx bx-chevron-left'></i>
+    </button>
+
     <!-- SIDE PANEL -->
-    <aside class="side-panel">
+    <aside class="side-panel" id="sidePanel">
       <!-- PANEL HEADER -->
       <div class="side-panel-header">
         <h2>Titik Sejarah Kota</h2>

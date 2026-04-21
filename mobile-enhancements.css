@@ -1,0 +1,658 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   MOBILE OPTIMIZATION ENHANCEMENTS - v2.0
+   Optimalisasi Responsivitas dan UX untuk Perangkat Mobile
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   1. ENHANCED HAMBURGER MENU - SMOOTH OVERLAY
+═══════════════════════════════════════════════════════════════════════════════ */
+
+.hamburger-btn {
+  position: relative;
+  z-index: 1100;
+  padding: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-btn span {
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* ENHANCED NAVBAR OVERLAY */
+.navbar.active {
+  animation: slideDownMenu 0.3s ease-out forwards;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--border-color);
+}
+
+@keyframes slideDownMenu {
+  from {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    max-height: 100vh;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar a {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px !important;
+  transition: all 0.2s ease;
+}
+
+.navbar a:active {
+  background: rgba(0, 123, 255, 0.08);
+  transform: translateX(4px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   2. FLOATING ACTION BUTTON (FAB) - HELP/ACCESSIBILITY
+═══════════════════════════════════════════════════════════════════════════════ */
+
+.fab-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-cyan) 100%);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+}
+
+.fab-button:hover,
+.fab-button:active {
+  transform: scale(1.12);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+}
+
+.fab-button:active {
+  transform: scale(0.95);
+}
+
+/* FAB untuk mobile - lebih prominent */
+@media (max-width: 767px) {
+  .fab-button {
+    width: 52px;
+    height: 52px;
+    bottom: 20px;
+    right: 16px;
+    font-size: 22px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   3. IMPROVED TOUCH TARGETS & BUTTON SIZES
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* Minimum touch target size: 44x44px (accessibility standard) */
+  button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"],
+  .btn-primary,
+  .btn-map,
+  .btn-tourism,
+  .btn-outline,
+  .filter-btn,
+  .tab-btn,
+  .side-filter-btn {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 16px;
+    font-size: 16px; /* Prevents zoom on focus in mobile Safari */
+  }
+
+  /* Improve spacing between interactive elements */
+  .filter-container,
+  .tabs-filter-row,
+  .tabs-row {
+    gap: 12px !important;
+  }
+
+  /* Better card touch areas */
+  .tour-card,
+  .card {
+    min-height: auto;
+    cursor: pointer;
+  }
+
+  /* Improve link tap areas */
+  .navbar a,
+  .footer-section a,
+  .footer-section li {
+    padding: 12px 16px;
+    display: block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   4. SIDEBAR/BOTTOM SHEET SWIPE GESTURE SUPPORT
+═══════════════════════════════════════════════════════════════════════════════ */
+
+.side-panel {
+  -webkit-user-select: none;
+  user-select: none;
+  scroll-behavior: smooth;
+}
+
+.side-panel-header::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 5px;
+  background: linear-gradient(90deg, #e0e0e0 0%, #d0d0d0 50%, #e0e0e0 100%);
+  border-radius: 3px;
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+.side-panel-header::before:active {
+  cursor: grabbing;
+  background: linear-gradient(90deg, #007bff 0%, #00acee 50%, #007bff 100%);
+  height: 6px;
+}
+
+.side-panel {
+  scroll-snap-type: y proximity;
+}
+
+.side-panel-header {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.content-list {
+  scroll-snap-type: y proximity;
+}
+
+.story-card {
+  scroll-snap-align: start;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   4B. SIDEBAR TOGGLE BUTTON & HIDDEN STATE (MOBILE)
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Hide toggle button on mobile */
+@media (max-width: 767px) {
+  .sidebar-toggle-btn {
+    display: none;
+  }
+
+  /* Sidebar hidden state on mobile (bottom sheet) */
+  .side-panel.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+    max-height: 0 !important;
+  }
+
+  .side-panel {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   5. IMPROVED FONT SIZES & READABILITY ON MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* Main headings */
+  h1, .hero-content h1 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+
+  /* Body text - minimum 16px for mobile */
+  body, p, li, a {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Small text remains readable */
+  .badge,
+  .badge-time,
+  small,
+  .text-sm {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* Better spacing for better readability */
+  p {
+    margin-bottom: 12px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  /* Icon sizes remain tappable */
+  i,
+  [class*="icon"],
+  .material-symbols-outlined {
+    min-width: 24px;
+    min-height: 24px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   6. MAP CONTROLS OPTIMIZATION FOR MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* Disable map autofocus on scroll */
+  #map,
+  .leaflet-container {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+  }
+
+  /* Map control positioning - right side with padding */
+  .leaflet-control-zoom,
+  .leaflet-control-layers {
+    margin: 12px 12px !important;
+  }
+
+  .leaflet-control-zoom {
+    margin-top: 76px !important; /* Below header */
+  }
+
+  /* Better touch targets for map controls */
+  .leaflet-control-zoom a,
+  .leaflet-control button {
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 18px !important;
+    line-height: 42px !important;
+    padding: 0 !important;
+  }
+
+  /* Top-left controls positioning */
+  .absolute.top-20.left-\\[390px\\] {
+    display: none;
+  }
+
+  .absolute.top-20 {
+    top: 76px !important; /* Below header */
+    left: 12px !important;
+    right: auto !important;
+  }
+
+  /* Basemap panel repositioning */
+  #basemapPanel {
+    position: fixed !important;
+    bottom: auto !important;
+    top: 130px !important;
+    left: 12px !important;
+    right: auto !important;
+    max-width: 200px;
+    z-index: 1001;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   7. IMAGE OPTIMIZATION FOR MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* Optimize image sizing */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Hero images - responsive aspect ratio */
+  .slide,
+  .hero .slider-wrapper img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Card images */
+  .card-image img,
+  .card img,
+  .tour-card img {
+    max-height: 180px;
+    object-fit: cover;
+  }
+
+  /* About section image */
+  .about-image-wrapper img {
+    max-height: 250px;
+  }
+
+  /* Hide decorative images on very small screens */
+  @media (max-width: 479px) {
+    .documentation-info {
+      display: none;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   8. IMPROVED SPACING & PADDING ON MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  body {
+    padding-top: 60px;
+    padding-bottom: 28px;
+  }
+
+  .header-container {
+    padding: 10px;
+  }
+
+  main section,
+  .features-section,
+  .about-section,
+  #tematrip-section,
+  .footer {
+    padding: 20px;
+  }
+
+  .card-body,
+  .panel-header,
+  .panel-body,
+  .side-panel-header {
+    padding: 16px;
+  }
+
+  .features-section,
+  .about-section {
+    gap: 16px;
+  }
+
+  /* Reduce excessive margins */
+  h1, h2, h3 {
+    margin-bottom: 12px;
+    margin-top: 8px;
+  }
+
+  section {
+    margin-bottom: 20px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   9. HIDE DECORATIVE ELEMENTS ON MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* Hide less important decorative elements */
+  .floating-badge {
+    display: none;
+  }
+
+  /* Simplify card layout */
+  .badge-time {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  /* Reduce shadow for faster rendering */
+  .card,
+  .tour-card,
+  .side-panel,
+  .glass-panel {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  }
+
+  .card:hover,
+  .tour-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   10. IMPROVED FORM CONTROLS ON MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    min-height: 44px;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+
+  /* Checkbox and radio improvements */
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-width: 20px;
+    min-height: 20px;
+    cursor: pointer;
+  }
+
+  /* Better label tap areas */
+  label {
+    display: block;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   11. SMOOTH TRANSITIONS & ANIMATIONS
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hamburger-btn span,
+  .navbar a,
+  button,
+  .card,
+  .tour-card,
+  .fab-button {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   12. IMPROVED HERO SECTION FOR MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 50vh;
+    max-height: 60vh;
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .hero-badge {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  /* Slider controls positioned better */
+  .prev-btn,
+  .next-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 18px;
+  }
+
+  .prev-btn {
+    left: 8px;
+  }
+
+  .next-btn {
+    right: 8px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   13. GRID & CARD LAYOUT OPTIMIZATION
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 479px) {
+  #tour-grid,
+  .card-grid,
+  .tour-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 8px;
+  }
+
+  .tour-card,
+  .card {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  #tour-grid,
+  .card-grid,
+  .tour-page {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   14. FOOTER OPTIMIZATION FOR MOBILE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-section {
+    width: 100%;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .social-icons a {
+    width: 36px;
+    height: 36px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo .logo img {
+    width: 140px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   15. ACCESSIBILITY IMPROVEMENTS
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Better contrast in dark mode detection */
+@media (prefers-color-scheme: dark) {
+  .navbar.active,
+  .side-panel,
+  .glass-panel {
+    background: linear-gradient(180deg, rgba(40,40,40,0.98) 0%, rgba(50,50,50,0.95) 100%);
+    color: white;
+  }
+}
+
+/* Skip to main content link (for accessibility) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  top: 0;
+}

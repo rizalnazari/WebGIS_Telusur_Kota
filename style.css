@@ -2247,6 +2247,76 @@ main .map-container {
     border-color: #007bff;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SIDEBAR TOGGLE BUTTON & HIDDEN STATE
+═══════════════════════════════════════════════════════════════════════════════ */
+
+.sidebar-toggle-btn {
+    position: absolute;
+    left: 380px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 11;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e9ecef;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.sidebar-toggle-btn:hover {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #007bff;
+}
+
+.sidebar-toggle-btn i {
+    transition: transform 0.3s ease;
+}
+
+/* When sidebar is hidden, rotate the icon and move button */
+.side-panel.hidden ~ .sidebar-toggle-btn,
+.sidebar-toggle-btn.sidebar-hidden {
+    left: 20px;
+}
+
+.side-panel.hidden ~ .sidebar-toggle-btn i,
+.sidebar-toggle-btn.sidebar-hidden i {
+    transform: rotate(180deg);
+}
+
+/* Sidebar Hidden State */
+.side-panel.hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.side-panel {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Adjust map controls when sidebar is visible */
+#map {
+    transition: all 0.3s ease;
+}
+
+.story-wrapper.sidebar-hidden #map {
+    margin-left: 0;
+}
+
+.story-wrapper.sidebar-visible #map {
+    margin-left: 0;
+}
+
 @media (max-width: 480px) {
     .side-filter-btn {
         flex: 1 1 100%;
@@ -2837,6 +2907,34 @@ body {
     font-size: 0.9rem;
   }
 
+  /* Sidebar Toggle Button - Mobile */
+  .sidebar-toggle-btn {
+    display: none;
+  }
+
+  /* Side Panel on Mobile */
+  .side-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: auto;
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    border-radius: 25px 25px 0 0;
+    z-index: 1000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .side-panel.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .panel-body {
     max-height: 250px;
     overflow-y: auto;
@@ -2931,11 +3029,25 @@ body {
     width: 300px;
   }
 
+  .sidebar-toggle-btn {
+    left: 280px;
+  }
+
   .side-panel {
-    width: 100%;
+    width: 280px;
     height: 45%;
     bottom: 0;
     border-radius: 20px 20px 0 0;
+  }
+
+  .side-panel.hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .side-panel.hidden ~ .sidebar-toggle-btn {
+    left: 20px;
   }
 }
 

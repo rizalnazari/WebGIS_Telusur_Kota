@@ -1093,6 +1093,37 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // SIDEBAR TOGGLE FUNCTIONALITY (Story Maps)
+    const sidePanel = document.getElementById('sidePanel');
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const storyWrapper = document.querySelector('.story-wrapper');
+
+    if (sidebarToggleBtn && sidePanel) {
+      sidebarToggleBtn.addEventListener('click', () => {
+        sidePanel.classList.toggle('hidden');
+        sidebarToggleBtn.classList.toggle('sidebar-hidden');
+        
+        if (storyWrapper) {
+          if (sidePanel.classList.contains('hidden')) {
+            storyWrapper.classList.add('sidebar-hidden');
+            storyWrapper.classList.remove('sidebar-visible');
+          } else {
+            storyWrapper.classList.remove('sidebar-hidden');
+            storyWrapper.classList.add('sidebar-visible');
+          }
+        }
+        
+        // Invalidate map size untuk adjust dengan perubahan layout
+        setTimeout(() => {
+          if (window.map) {
+            window.map.invalidateSize(true);
+          }
+        }, 300);
+        
+        console.log('✓ Sidebar toggled - Hidden:', sidePanel.classList.contains('hidden'));
+      });
+    }
+
     // GLOBAL ZOOM FUNCTION
     window.zoomToLocation = function(id) {
       if (!window.map) {
