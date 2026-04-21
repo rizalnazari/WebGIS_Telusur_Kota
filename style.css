@@ -117,6 +117,7 @@ body {
   display: flex; 
   gap: 25px; 
   align-items: center; 
+  z-index: 999;
 }
 
 .navbar a {
@@ -697,10 +698,12 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    z-index: 999;
   }
 
   .navbar.active {
     max-height: 300px;
+    z-index: 999;
   }
 
   .navbar a {
@@ -789,7 +792,7 @@ body {
   /* Card Grid */
   #tour-grid,
   .card-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 15px;
     padding: 0 5%;
   }
@@ -880,10 +883,12 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    z-index: 999;
   }
 
   .navbar.active {
     max-height: 350px;
+    z-index: 999;
   }
 
   .navbar a {
