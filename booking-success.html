@@ -9,32 +9,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile-enhancements.css">
     <style>
-        .booking-success-header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--header-bg);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            z-index: 999;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 10px 0;
-        }
-
-        .booking-success-header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .booking-success-logo img {
-            height: 40px;
-        }
-
         body {
             padding-top: 60px;
         }
@@ -233,11 +207,17 @@
 </head>
 <body>
     <!-- BOOKING SUCCESS HEADER WITH LANGUAGE SWITCHER -->
-    <header class="booking-success-header">
-        <div class="booking-success-header-container">
-            <a href="index.html" class="booking-success-logo">
-                <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
-            </a>
+    <header class="booking-header">
+        <div class="booking-header-container">
+            <div class="booking-header-left">
+                <a href="index.html" class="booking-logo">
+                    <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+                </a>
+                <div class="booking-header-info">
+                    <h1 id="booking-success-header-title" style="margin: 0; font-size: 18px; font-weight: 600;">Pemesanan Berhasil</h1>
+                    <p id="booking-success-breadcrumb" style="margin: 0; font-size: 12px; color: #6c757d;">Telusur Kota</p>
+                </div>
+            </div>
             
             <!-- Language Switcher for Booking Success -->
             <div class="language-switcher booking-lang-switcher">
@@ -351,6 +331,11 @@
 
         // Update success page translations
         function updateSuccessTranslations(lang) {
+            const headerTitle = document.getElementById('booking-success-header-title');
+            if (headerTitle) {
+                headerTitle.textContent = lang === 'id' ? 'Pemesanan Berhasil' : 'Booking Successful';
+            }
+            
             const titleEl = document.getElementById('success-title');
             if (titleEl) {
                 titleEl.textContent = lang === 'id' ? 'Pemesanan Berhasil!' : 'Booking Successful!';

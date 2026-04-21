@@ -18,9 +18,15 @@
     <!-- BOOKING HEADER WITH LANGUAGE SWITCHER -->
     <header class="booking-header">
         <div class="booking-header-container">
-            <a href="index.html" class="booking-logo">
-                <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
-            </a>
+            <div class="booking-header-left">
+                <a href="index.html" class="booking-logo">
+                    <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
+                </a>
+                <div class="booking-header-info">
+                    <h1 id="booking-header-title" style="margin: 0; font-size: 18px; font-weight: 600;">Pendaftaran Tour</h1>
+                    <p id="booking-header-breadcrumb" style="margin: 0; font-size: 12px; color: #6c757d;">Telusur Kota</p>
+                </div>
+            </div>
             
             <!-- Language Switcher for Booking -->
             <div class="language-switcher booking-lang-switcher">
@@ -306,6 +312,9 @@
             const t = translations[lang].booking;
             
             // Update header
+            const headerTitle = document.getElementById('booking-header-title');
+            if (headerTitle) headerTitle.textContent = lang === 'id' ? 'Pendaftaran Tour' : 'Tour Registration';
+            
             const titleEl = document.getElementById('booking-title');
             const subtitleEl = document.getElementById('booking-subtitle');
             if (titleEl) titleEl.textContent = lang === 'id' ? 'Pendaftaran Tour Telusur Kota' : 'Tour Registration';

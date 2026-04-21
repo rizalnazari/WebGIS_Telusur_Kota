@@ -223,8 +223,31 @@ body {
   margin: 0 auto;
 }
 
+.booking-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .booking-logo img {
-  height: 40px;
+  height: 45px;
+}
+
+.booking-header-info {
+  border-left: 2px solid var(--border-color);
+  padding-left: 15px;
+}
+
+.booking-header-info h1 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0;
+}
+
+.booking-header-info p {
+  color: var(--text-gray);
+  font-size: 12px;
+  margin: 4px 0 0 0;
 }
 
 .booking-lang-switcher {

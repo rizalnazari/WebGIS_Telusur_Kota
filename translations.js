@@ -209,8 +209,49 @@ const translations = {
       suggestRoute: "Usulkan Rute Anda",
       hours: "Jam",
       person: "orang"
+    },
+    // Tematrip Page
+    tematrip: {
+      badge: "Jelajahi Tema Trip",
+      title: "Pilih",
+      titleAccent: "Tema Tur",
+      subtitle: "Temukan narasi tersembunyi di setiap sudut kota melalui kategori tur yang dirancang khusus untuk pengalaman imersif.",
+      filterAll: "Semua",
+      startingFrom: "Mulai Dari",
+      duration: "Jam",
+      explore: "Jelajahi"
+    },
+    // Map Page - Side Panel
+    mapSidePanel: {
+      title: "Sejarah Kota",
+      all: "Semua",
+      regular: "Regular",
+      special: "Special",
+      private: "Private",
+      education: "Education"
     }
   }
+};
+
+// Tambahkan untuk English
+translations.en.tematrip = {
+  badge: "Explore Theme Trips",
+  title: "Choose Your",
+  titleAccent: "Tour Theme",
+  subtitle: "Discover hidden narratives in every corner of the city through tour categories designed specifically for immersive experiences.",
+  filterAll: "All",
+  startingFrom: "Starting From",
+  duration: "Hours",
+  explore: "Explore"
+};
+
+translations.en.mapSidePanel = {
+  title: "City History",
+  all: "All",
+  regular: "Regular",
+  special: "Special",
+  private: "Private",
+  education: "Education"
 };
 
 // ================= LANGUAGE SWITCHER LOGIC =================
