@@ -1724,6 +1724,37 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========= GLOBAL UTILITIES & FINAL INITIALIZATION ==========
+  
+  /* ─────────────────────────────────────────────────────────────
+     HAMBURGER MENU FUNCTIONALITY (MOBILE)
+  ───────────────────────────────────────────────────────────────── */
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const navbar = document.getElementById('navbar');
+
+  if (hamburgerBtn && navbar) {
+    hamburgerBtn.addEventListener('click', function() {
+      hamburgerBtn.classList.toggle('active');
+      navbar.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    const navbarLinks = navbar.querySelectorAll('a');
+    navbarLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        hamburgerBtn.classList.remove('active');
+        navbar.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.header-container')) {
+        hamburgerBtn.classList.remove('active');
+        navbar.classList.remove('active');
+      }
+    });
+  }
+
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     if (window.scrollY > 50) {

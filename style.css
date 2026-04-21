@@ -130,6 +130,39 @@ body {
 .navbar a:hover, .navbar a.active { color: var(--primary-color); }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
+   HAMBURGER MENU (MOBILE ONLY)
+═══════════════════════════════════════════════════════════════════════════════ */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  gap: 5px;
+}
+
+.hamburger-btn span {
+  width: 25px;
+  height: 2.5px;
+  background: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
    DROPDOWN STYLING
 ═══════════════════════════════════════════════════════════════════════════════ */
 .dropdown { position: relative; }
@@ -633,18 +666,404 @@ body {
 /* ═══════════════════════════════════════════════════════════════════════════════
    10. RESPONSIVE OVERRIDES - MOBILE, TABLET, DESKTOP
 ═══════════════════════════════════════════════════════════════════════════════ */
-@media (max-width: 992px) {
-  #tour-grid { grid-template-columns: repeat(2, 1fr); }
-  .page-section-title { padding: 0 5%; }
+
+/* ────────────────────────────────────────────────────────────────────────────
+   MOBILE DEVICES (< 480px)
+──────────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  /* Header & Navigation */
+  .header-container {
+    padding: 10px 3%;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar.active {
+    max-height: 300px;
+  }
+
+  .navbar a {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 13px;
+  }
+
+  /* Hero Section - OPTIMIZED FOR MOBILE */
+  .hero {
+    width: 100%;
+    height: 35vh;
+    min-height: 240px;
+    margin: 10px auto;
+    border-radius: 12px;
+    padding: 0 2%;
+  }
+
+  .hero-content {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .hero-content p {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+  }
+
+  .prev-btn,
+  .next-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
+
+  .prev-btn { left: 8px; }
+  .next-btn { right: 8px; }
+
+  .dots-container {
+    bottom: 12px;
+    gap: 5px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  /* About Section */
+  .about-section {
+    flex-direction: column;
+    padding: 20px 5%;
+  }
+
+  .about-image-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .about-image-wrapper img {
+    max-height: 250px;
+  }
+
+  .about-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-content p {
+    font-size: 0.9rem;
+  }
+
+  .btn-map, .btn-tourism {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  /* Card Grid */
+  #tour-grid,
+  .card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+    padding: 0 5%;
+  }
+
+  .card {
+    border-radius: 12px;
+  }
+
+  .card-body h3 {
+    font-size: 1.1rem;
+  }
+
+  .card-body p {
+    font-size: 0.85rem;
+  }
+
+  /* Buttons */
+  .tab-btn,
+  .filter-btn {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+
+  .tabs-filter-row,
+  .tabs-row {
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  /* Section Titles */
+  .section-title,
+  .page-section-title h2 {
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    padding: 0 5%;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-logo .logo img {
+    width: 150px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-section h3 {
+    display: block;
+    margin: 0 auto 1rem;
+  }
 }
 
-@media (max-width: 650px) {
-  #tour-grid { grid-template-columns: 1fr; padding: 0 20px; }
-  .tabs-filter-row { gap: 8px; }
-  .tab-btn { padding: 8px 20px; font-size: 13px; }
-  .footer-content { flex-direction: column; text-align: center; }
-  .footer-section h3 { display: block; margin: 0 auto 1rem; }
-  .social-icons { justify-content: center; }
+/* ────────────────────────────────────────────────────────────────────────────
+   SMALL DEVICES (480px - 767px)
+──────────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Header */
+  .header-container {
+    padding: 12px 4%;
+  }
+
+  .logo img {
+    height: 38px;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--bg-white);
+    border-bottom: 1px solid var(--border-color);
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar.active {
+    max-height: 350px;
+  }
+
+  .navbar a {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+  }
+
+  /* Hero Section - OPTIMIZED FOR TABLETS */
+  .hero {
+    height: 45vh;
+    min-height: 300px;
+    margin: 15px auto;
+    border-radius: 18px;
+  }
+
+  .hero-content {
+    max-width: 95%;
+  }
+
+  .hero-content h1 {
+    font-size: 1.4rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+  }
+
+  .prev-btn,
+  .next-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+  }
+
+  .prev-btn { left: 12px; }
+  .next-btn { right: 12px; }
+
+  .dots-container {
+    bottom: 18px;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* About Section */
+  .about-section {
+    flex-direction: column;
+    padding: 25px 5%;
+  }
+
+  .about-image-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .about-image-wrapper img {
+    max-height: 300px;
+  }
+
+  /* Grid */
+  #tour-grid,
+  .card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+    padding: 0 5%;
+  }
+
+  /* Buttons */
+  .tab-btn,
+  .filter-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  /* Section Title */
+  .section-title,
+  .page-section-title h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   TABLETS (768px - 991px)
+──────────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hamburger-btn {
+    display: none;
+  }
+
+  .navbar {
+    flex-direction: row !important;
+    gap: 15px !important;
+    max-height: none !important;
+  }
+
+  .navbar a {
+    padding: 0 !important;
+    border-bottom: none !important;
+    font-size: 13px;
+  }
+
+  /* Grid */
+  #tour-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 5%;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 5%;
+  }
+
+  /* Hero */
+  .hero {
+    height: 65vh;
+    min-height: 450px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .section-title,
+  .page-section-title h2 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+  }
+
+  .page-section-title {
+    padding: 0 5%;
+  }
+
+  .tabs-filter-row {
+    gap: 12px;
+  }
+
+  .tab-btn {
+    padding: 10px 25px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   MEDIUM DEVICES (992px - 1199px)
+──────────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 992px) {
+  .hamburger-btn {
+    display: none;
+  }
+
+  #tour-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   LARGE DEVICES (1200px+)
+──────────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1200px) {
+  .header-container {
+    max-width: 1400px;
+  }
+
+  #tour-grid,
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero {
+    max-width: 1400px;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
@@ -2334,4 +2753,210 @@ body {
     .left-col {
         margin-bottom: 20px;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   ADDITIONAL RESPONSIVE ADJUSTMENTS FOR MAP & PANEL ELEMENTS
+═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Mobile: Smaller Map Panels */
+@media (max-width: 767px) {
+  .panel-left,
+  .panel-right {
+    width: 100%;
+    max-width: calc(100vw - 32px);
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 10px auto;
+  }
+
+  .feature-popup {
+    width: 100%;
+    max-width: calc(100vw - 32px);
+    top: auto !important;
+    bottom: 10px !important;
+    left: 16px !important;
+    right: auto !important;
+  }
+
+  .panel-body {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .side-panel {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    border-radius: 25px 25px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: auto;
+  }
+
+  .side-panel-header {
+    padding: 20px;
+  }
+
+  .content-list {
+    max-height: 40vh;
+  }
+
+  .leaflet-control-zoom {
+    margin: 10px !important;
+  }
+
+  .leaflet-control-zoom a {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 14px !important;
+    line-height: 32px !important;
+  }
+
+  /* SLIDER CONTROLS - MOBILE OPTIMIZATION */
+  .prev-btn,
+  .next-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .dots-container {
+    bottom: 12px;
+    gap: 5px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .dot.active {
+    width: 20px;
+  }
+}
+
+/* Tablet: Adjust Panel Sizing */
+@media (min-width: 768px) and (max-width: 991px) {
+  .panel-left {
+    width: 280px;
+  }
+
+  .panel-right {
+    width: 260px;
+  }
+
+  .feature-popup {
+    width: 300px;
+  }
+
+  .side-panel {
+    width: 100%;
+    height: 45%;
+    bottom: 0;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+/* Improve About Section for Mobile */
+@media (max-width: 767px) {
+  .about-container {
+    min-height: 300px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .container-split {
+    flex-direction: column;
+    padding: 30px 15px;
+  }
+
+  .left-col {
+    margin-bottom: 15px;
+  }
+
+  .review-section .container-split {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .feedback-col {
+    padding-right: 0;
+  }
+
+  .team-grid {
+    flex-direction: column;
+  }
+
+  .documentation {
+    min-width: 100%;
+  }
+}
+
+/* Improve Card Details for Mobile */
+@media (max-width: 479px) {
+  .card-btn-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .price-box .price {
+    font-size: 20px;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-body h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Optimize Footer for Mobile */
+@media (max-width: 767px) {
+  .footer-logo .logo img {
+    width: 120px;
+  }
+
+  .social-icons {
+    gap: 10px;
+  }
+
+  .social-icons a {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .footer-section ul li {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .copyright-bottom {
+    font-size: 0.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   UTILITY CLASSES FOR INLINE STYLES MOVED TO CSS
+═══════════════════════════════════════════════════════════════════════════════ */
+
+.tour-contact-description {
+  font-size: 0.8rem;
+  margin-top: 15px;
+  color: #999;
+}
+
+.positioning-text {
+  text-align: justify;
+  line-height: 1.6;
 }
