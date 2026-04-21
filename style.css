@@ -2319,7 +2319,6 @@ main .map-container {
 
 /* Zoom Controls - Responsive positioning based on sidebar state */
 #zoomControlsContainer {
-    position: absolute;
     left: 390px;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
