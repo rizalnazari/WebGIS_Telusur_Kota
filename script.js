@@ -83,6 +83,43 @@ window.navigateToTematrip = function(category) {
 // ================= END GLOBAL UTILITIES =================
 
 document.addEventListener('DOMContentLoaded', () => {
+  // DRAG TO CLOSE SIDE PANEL (Mobile UX)
+  const sidePanel = document.querySelector('.side-panel');
+  const sidePanelHeader = document.querySelector('.side-panel-header');
+  let startY = null;
+  let currentY = null;
+  let dragging = false;
+  if (sidePanel && sidePanelHeader) {
+    sidePanelHeader.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 1) {
+        dragging = true;
+        startY = e.touches[0].clientY;
+        sidePanel.style.transition = 'none';
+      }
+    });
+    sidePanelHeader.addEventListener('touchmove', function(e) {
+      if (!dragging) return;
+      currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+      if (deltaY > 0) {
+        sidePanel.style.transform = `translateY(${deltaY}px)`;
+      }
+    });
+    sidePanelHeader.addEventListener('touchend', function(e) {
+      if (!dragging) return;
+      dragging = false;
+      const deltaY = currentY - startY;
+      sidePanel.style.transition = '';
+      if (deltaY > 80) {
+        // Close panel if dragged down enough
+        sidePanel.classList.add('hidden');
+        sidePanel.style.transform = '';
+      } else {
+        // Snap back
+        sidePanel.style.transform = '';
+      }
+    });
+  }
 
   // ╔═══════════════════════════════════════════════════════════════════════════╗
   // ║ PAGE 1: BERANDA (index.html)                                              ║
