@@ -27,20 +27,15 @@
         <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
       </a>
 
-      <nav class="navbar" id="navbar">
+      <nav class="navbar">
         <a href="index.html" >BERANDA</a>
         <a href="tematrip.html" >TEMA TRIP</a>
         <a href="map.html" class="active">STORY MAPS</a>
         <a href="tourismmaps.html">TOURISM MAPS</a>
         <a href="profile.html">TENTANG KAMI</a>
         </nav>
-
-      <!-- Hamburger Menu for Mobile -->
-      <button class="hamburger-btn" id="hamburger-btn" title="Toggle navigation menu" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    </div>
+  </header>
 
   <!-- MAP CONTENT SECTION -->
   <main class="story-wrapper">
@@ -98,7 +93,7 @@
         <div class="story-card" data-kategori="regular" onclick="zoomToLocation(0)">
           <img src="https://via.placeholder.com/400x180?text=Hotel+Mutiara" alt="Hotel Mutiara">
           <div class="card-info">
-            <span class="badge badge-regular">Regular</span>
+            <span class="badge">Regular</span>
             <h3>Hotel Mutiara</h3>
             <p>Bagian penting dari sejarah akomodasi kota yang tetap mempertahankan nilai arsitektur klasiknya.</p>
           </div>
@@ -107,7 +102,7 @@
         <div class="story-card" data-kategori="regular" onclick="zoomToLocation(1)">
           <img src="https://via.placeholder.com/400x180?text=Asistent+Resident" alt="Rumah Dinas">
           <div class="card-info">
-            <span class="badge badge-regular">Regular</span>
+            <span class="badge">Regular</span>
             <h3>Asistent Resident</h3>
             <p>Bangunan bersejarah yang kini berfungsi sebagai Rumah Dinas Walikota Salatiga.</p>
           </div>
@@ -116,7 +111,7 @@
         <div class="story-card" data-kategori="regular" onclick="zoomToLocation(2)">
           <img src="https://via.placeholder.com/400x180?text=Rumah+Dokter+Hasmo" alt="Rumah Dokter Hasmo">
           <div class="card-info">
-            <span class="badge badge-regular">Regular</span>
+            <span class="badge">Regular</span>
             <h3>Rumah Dokter Hasmo</h3>
             <p>Arsitektur kolonial yang masih terjaga keasliannya.</p>
           </div>
@@ -125,7 +120,7 @@
         <div class="story-card" data-kategori="regular" onclick="zoomToLocation(3)">
           <img src="https://via.placeholder.com/400x180?text=Garasi+ESTO" alt="Garasi ESTO">
           <div class="card-info">
-            <span class="badge badge-regular">Regular</span>
+            <span class="badge">Regular</span>
             <h3>Garasi ESTO</h3>
             <p>Bekas garasi bus legendaris yang kini menjadi pusat kuliner.</p>
           </div>
@@ -134,109 +129,9 @@
         <div class="story-card" data-kategori="regular" onclick="zoomToLocation(4)">
           <img src="https://via.placeholder.com/400x180?text=1915+Coffee" alt="1915 Coffee">
           <div class="card-info">
-            <span class="badge badge-regular">Regular</span>
+            <span class="badge">Regular</span>
             <h3>1915 Coffee</h3>
             <p>Bangunan bersejarah tahun 1915 yang diubah menjadi cafe modern.</p>
-          </div>
-        </div>
-
-        <!-- Special Category Cards -->
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(5)">
-          <img src="https://via.placeholder.com/400x180?text=Denhubrem+073" alt="Denhubrem 073">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Denhubrem 073 Hubdam IV/Dip</h3>
-            <p>Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(6)">
-          <img src="https://via.placeholder.com/400x180?text=Kodim+0714" alt="Kodim 0714">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Kodim 0714 / Salatiga</h3>
-            <p>Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(7)">
-          <img src="https://via.placeholder.com/400x180?text=Puri+Makutarama" alt="Puri Makutarama">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Puri Makutarama</h3>
-            <p>Tempat istimewa dengan arsitektur dan nilai sejarah yang unik.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(8)">
-          <img src="https://via.placeholder.com/400x180?text=GKJ+Salatiga" alt="GKJ Salatiga">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Gereja Kristen Jawa (GKJ) Salatiga</h3>
-            <p>Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(9)">
-          <img src="https://via.placeholder.com/400x180?text=Rumah+Kartini" alt="Rumah Kartini">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Bekas Rumah Keluarga Kartini</h3>
-            <p>Rumah bersejarah yang terkait dengan tokoh nasional.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(10)">
-          <img src="https://via.placeholder.com/400x180?text=Santo+Paulus+Miki" alt="Santo Paulus Miki">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Gereja Katolik Santo Paulus Miki</h3>
-            <p>Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(11)">
-          <img src="https://via.placeholder.com/400x180?text=Rumah+Hartini" alt="Rumah Hartini">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Bekas Rumah Hartini</h3>
-            <p>Rumah bersejarah dengan nilai penting dalam sejarah lokal.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(12)">
-          <img src="https://via.placeholder.com/400x180?text=Kanisius+Cungkup" alt="Kanisius Cungkup">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>KB-TK-SD Kanisius Cungkup Salatiga</h3>
-            <p>Institusi pendidikan bersejarah dengan nilai budaya.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(13)">
-          <img src="https://via.placeholder.com/400x180?text=Batalyon+411" alt="Batalyon 411">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Batalyon Infanteri 411</h3>
-            <p>Lokasi bersejarah dengan nilai khusus bagi sejarah militer.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(14)">
-          <img src="https://via.placeholder.com/400x180?text=Makam+Kyai" alt="Makam Kyai Abdul Wahid">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Makam Kyai Abdul Wahid</h3>
-            <p>Makam tokoh agama dengan nilai spiritual dan sejarah.</p>
-          </div>
-        </div>
-
-        <div class="story-card" data-kategori="special" onclick="zoomToLocation(15)">
-          <img src="https://via.placeholder.com/400x180?text=Masjid+Al-Fudlola" alt="Masjid Al-Fudlola">
-          <div class="card-info">
-            <span class="badge badge-special">Special</span>
-            <h3>Masjid Al-Fudlola</h3>
-            <p>Masjid bersejarah dengan nilai spiritual dan keagamaan.</p>
           </div>
         </div>
       </div>
