@@ -43,24 +43,32 @@
     <div id="map"></div>
 
     <!-- TOP LEFT CONTROLS -->
-<div class="absolute top-10 left-[390px] z-30 flex flex-col gap-1 items-start transition-all duration-300">
+<div class="absolute top-24 z-30 flex flex-col gap-1 items-start transition-all duration-300" id="zoomControlsContainer">
   <div class="bg-white/90 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-1 p-1">
     
-    <button id="zoomInBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-xl" aria-label="Zoom In">
-      <i class='bx bx-plus'></i>
+    <button id="zoomInBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-base" aria-label="Zoom In">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+        <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+      </svg>
     </button>
 
-    <button id="zoomOutBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-xl" aria-label="Zoom Out">
-      <i class='bx bx-minus'></i>
+    <button id="zoomOutBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-yellow-100 transition text-base" aria-label="Zoom Out">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+        <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+      </svg>
     </button>
 
-    <button id="locateBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-blue-100 transition text-xl" aria-label="Lokasi Saya">
-      <i class='bx bx-target-lock'></i>
+    <button id="locateBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-blue-100 transition text-base" aria-label="Lokasi Saya">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+        <path d="M500 224h-30.364C455.724 130.325 381.675 56.276 288 42.364V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v30.364C130.325 56.276 56.276 130.325 42.364 224H12c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h30.364C56.276 381.675 130.325 455.724 224 469.636V500c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-30.364C381.675 455.724 455.724 381.675 469.636 288H500c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12zM288 404.634V364c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v40.634C165.826 392.232 119.783 346.243 107.366 288H148c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12h-40.634C119.768 165.826 165.757 119.783 224 107.366V148c0 6.627 5.373 12 12 12h40c6.627 0 12-5.373 12-12v-40.634C346.174 119.768 392.217 165.757 404.634 224H364c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h40.634C392.232 346.174 346.243 392.217 288 404.634zM288 256c0 17.673-14.327 32-32 32s-32-14.327-32-32c0-17.673 14.327-32 32-32s32 14.327 32 32z"></path>
+      </svg>
     </button>
 
     <div class="relative">
-      <button id="basemapBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition text-xl" aria-label="Ganti Basemap">
-        <i class='bx bx-layer'></i>
+      <button id="basemapBtn" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition text-base" aria-label="Ganti Basemap">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z"></path>
+        </svg>
       </button>
       
       <div id="basemapPanel" class="hidden absolute left-0 top-full mt-2 w-48 rounded-2xl bg-white/95 shadow-lg border border-gray-200 p-2 text-sm text-gray-800 z-40">

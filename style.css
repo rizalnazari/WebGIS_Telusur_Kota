@@ -2317,6 +2317,23 @@ main .map-container {
     margin-left: 0;
 }
 
+/* Zoom Controls - Responsive positioning based on sidebar state */
+#zoomControlsContainer {
+    position: absolute;
+    left: 390px;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-wrapper.sidebar-hidden #zoomControlsContainer {
+    left: 16px;
+}
+
+@media (min-width: 640px) {
+    .story-wrapper.sidebar-hidden #zoomControlsContainer {
+        left: 32px;
+    }
+}
+
 @media (max-width: 480px) {
     .side-filter-btn {
         flex: 1 1 100%;
