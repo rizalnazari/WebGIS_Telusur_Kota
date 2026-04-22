@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const allTours = [
     { category: 'regular', title: 'Hotel Mutiara', time: '2 Jam', price: 'Rp 100.000', img:'DOKUMENTASI/TEMATRIP/MUTIARA.webp', desc: 'Bagian penting dari sejarah akomodasi kota yang ikonik.' },
     { category: 'regular', title: 'Asistent Resident', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/ASISTEN RESIDENT.webp', desc: 'Kini berfungsi sebagai Rumah Dinas Walikota Salatiga.' },
-    { category: 'regular', title: 'Rumah Dokter Hasmo', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/RUMAH DOKTOR HASMO.webp', desc: 'Arsitektur kolonial yang masih terjaga keasliannya.' },
+    { category: 'regular', title: 'Rumah Dokter Hasmo', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/Rumah Dokter Hasmo.webp', desc: 'Arsitektur kolonial yang masih terjaga keasliannya.' },
     { category: 'regular', title: 'Garasi ESTO', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/GARASI ESTO.webp', desc: 'Bekas garasi bus legendaris yang kini menjadi pusat kuliner.' },
     { category: 'regular', title: '1915 Coffee', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/1915 COFFEE.webp', desc: 'Bangunan bersejarah tahun 1915 yang diubah menjadi cafe modern.' },
     { category: 'special', title: 'Denhubrem 073 Hubdam IV/Dip', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/DENHUBREM.webp', desc: 'Lokasi bersejarah dengan nilai khusus bagi sejarah militer.' },

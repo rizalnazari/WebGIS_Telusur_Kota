@@ -845,7 +845,12 @@ body {
 
   /* Buttons */
   .tab-btn,
-  .filter-btn {\n    padding: 8px 12px;\n    font-size: 11px;\n    flex: 0 1 auto;\n    min-width: 80px;\n  }
+  .filter-btn {
+    padding: 8px 12px;
+    font-size: 11px;
+    flex: 0 1 auto;
+    min-width: 80px;
+  }
 
   .filter-container {
     gap: 8px;
@@ -2949,7 +2954,6 @@ body {
     border-radius: 25px 25px 0 0;
     z-index: 1000;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     transform: translateY(0);
     opacity: 1;
   }
@@ -2976,7 +2980,6 @@ body {
     top: auto;
     z-index: 50;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   .side-panel-header {
