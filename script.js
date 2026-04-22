@@ -83,15 +83,6 @@ window.navigateToTematrip = function(category) {
 // ================= END GLOBAL UTILITIES =================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ================= LANGUAGE SWITCHER =================
-  const langBtns = document.querySelectorAll('.lang-btn');
-  langBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const lang = this.getAttribute('data-lang');
-      setLanguage(lang);
-    });
-  });
-  
   // DRAG TO CLOSE SIDE PANEL (Mobile UX)
   const sidePanel = document.querySelector('.side-panel');
   const sidePanelHeader = document.querySelector('.side-panel-header');
@@ -408,21 +399,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // TEMATRIP: Tour Data & Pagination
   const allTours = [
-    { category: 'regular', title: 'Hotel Mutiara', time: '2 Jam', price: 'Rp 100.000', img: 'https://via.placeholder.com/400x300', desc: 'Bagian penting dari sejarah akomodasi kota yang ikonik.' },
-    { category: 'regular', title: 'Asistent Resident', time: '2 Jam', price: 'Rp 100.000', img: 'https://via.placeholder.com/400x300', desc: 'Kini berfungsi sebagai Rumah Dinas Walikota Salatiga.' },
-    { category: 'regular', title: 'Rumah Dokter Hasmo', time: '2 Jam', price: 'Rp 100.000', img: 'https://via.placeholder.com/400x300', desc: 'Arsitektur kolonial yang masih terjaga keasliannya.' },
-    { category: 'regular', title: 'Garasi ESTO', time: '2 Jam', price: 'Rp 100.000', img: 'https://via.placeholder.com/400x300', desc: 'Bekas garasi bus legendaris yang kini menjadi pusat kuliner.' },
-    { category: 'regular', title: '1915 Coffee', time: '2 Jam', price: 'Rp 100.000', img: 'https://via.placeholder.com/400x300', desc: 'Bangunan bersejarah tahun 1915 yang diubah menjadi cafe modern.' },
-    { category: 'special', title: 'Denhubrem 073 Hubdam IV/Dip', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Lokasi bersejarah dengan nilai khusus bagi sejarah militer.' },
-    { category: 'special', title: 'Kodim 0714 / Salatiga', time: '1 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Lokasi bersejarah dengan nilai khusus bagi sejarah militer.' },
-    { category: 'special', title: 'Puri Makutarama', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Tempat istimewa dengan arsitektur dan nilai sejarah yang unik.' },
-    { category: 'special', title: 'Gereja Kristen Jawa (GKJ) Salatiga', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.' },
-    { category: 'special', title: 'Bekas Rumah Keluarga Kartini', time: '1 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Rumah bersejarah yang terkait dengan tokoh nasional.' },
-    { category: 'special', title: 'Gereja Katolik Santo Paulus Miki', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.' },
-    { category: 'special', title: 'Bekas Rumah Hartini', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Rumah bersejarah dengan nilai penting dalam sejarah lokal.' },
-    { category: 'special', title: 'KB-TK-SD Kanisius Cungkup Salatiga', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Institusi pendidikan bersejarah dengan nilai budaya.' },
+    { category: 'regular', title: 'Hotel Mutiara', time: '2 Jam', price: 'Rp 100.000', img:'DOKUMENTASI/TEMATRIP/MUTIARA.webp', desc: 'Bagian penting dari sejarah akomodasi kota yang ikonik.' },
+    { category: 'regular', title: 'Asistent Resident', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/ASISTEN RESIDENT.webp', desc: 'Kini berfungsi sebagai Rumah Dinas Walikota Salatiga.' },
+    { category: 'regular', title: 'Rumah Dokter Hasmo', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/RUMAH DOKTOR HASMO.webp', desc: 'Arsitektur kolonial yang masih terjaga keasliannya.' },
+    { category: 'regular', title: 'Garasi ESTO', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/GARASI ESTO.webp', desc: 'Bekas garasi bus legendaris yang kini menjadi pusat kuliner.' },
+    { category: 'regular', title: '1915 Coffee', time: '2 Jam', price: 'Rp 100.000', img: 'DOKUMENTASI/TEMATRIP/1915 COFFEE.webp', desc: 'Bangunan bersejarah tahun 1915 yang diubah menjadi cafe modern.' },
+    { category: 'special', title: 'Denhubrem 073 Hubdam IV/Dip', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/DENHUBREM.webp', desc: 'Lokasi bersejarah dengan nilai khusus bagi sejarah militer.' },
+    { category: 'special', title: 'Kodim 0714 / Salatiga', time: '1 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/KODIM.webp', desc: 'Lokasi bersejarah dengan nilai khusus bagi sejarah militer.' },
+    { category: 'special', title: 'Puri Makutarama', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/PURI MAKUTARAMA.webp', desc: 'Tempat istimewa dengan arsitektur dan nilai sejarah yang unik.' },
+    { category: 'special', title: 'Gereja Kristen Jawa (GKJ) Salatiga', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/GKJ.webp', desc: 'Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.' },
+    { category: 'special', title: 'Bekas Rumah Keluarga Kartini', time: '1 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/BEKAS RUMAH KELUARGA KARTINI.webp', desc: 'Rumah bersejarah yang terkait dengan tokoh nasional.' },
+    { category: 'special', title: 'Gereja Katolik Santo Paulus Miki', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/GEREJA KATOlik SANTO PAULUS MIKI.webp', desc: 'Tempat ibadah bersejarah dengan nilai budaya dan keagamaan.' },
+    { category: 'special', title: 'Bekas Rumah Hartini', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/BEKAS RUMAH HARTINI.webp', desc: 'Rumah bersejarah dengan nilai penting dalam sejarah lokal.' },
+    { category: 'special', title: 'KB-TK-SD Kanisius Cungkup Salatiga', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/KB-TK-SD KANISIUS CUNGKUP SALATIGA.webp', desc: 'Institusi pendidikan bersejarah dengan nilai budaya.' },
     { category: 'special', title: 'Batalyon Infanteri 411', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Lokasi bersejarah dengan nilai khusus bagi sejarah militer.' },
-    { category: 'special', title: 'Makam Kyai Abdul Wahid', time: '2 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Makam tokoh agama dengan nilai spiritual dan sejarah.' },
+    { category: 'special', title: 'Makam Kyai Abdul Wahid', time: '2 Jam', price: 'Rp 200.000', img: 'DOKUMENTASI/TEMATRIP/MAKAM KYAI ABDUL WAHID.webp', desc: 'Makam tokoh agama dengan nilai spiritual dan sejarah.' },
     { category: 'special', title: 'Masjid Al-Fudlola', time: '1 Jam', price: 'Rp 200.000', img: 'https://via.placeholder.com/400x300', desc: 'Masjid bersejarah dengan nilai spiritual dan keagamaan.' }
   ];
 

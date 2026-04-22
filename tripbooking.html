@@ -15,48 +15,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
 <body>
-    <!-- BOOKING HEADER WITH LANGUAGE SWITCHER -->
-    <header class="booking-header">
-        <div class="booking-header-container">
-            <div class="booking-header-left">
-                <a href="index.html" class="booking-logo">
-                    <img src="https://telusurkota.com/wp-content/uploads/2025/09/telusur-kota-logo.png" alt="Telusur Kota Logo">
-                </a>
-                <div class="booking-header-info">
-                    <h1 id="booking-header-title" style="margin: 0; font-size: 18px; font-weight: 600;">Pendaftaran Tour</h1>
-                    <p id="booking-header-breadcrumb" style="margin: 0; font-size: 12px; color: #6c757d;">Telusur Kota</p>
-                </div>
-            </div>
-            
-            <!-- Language Switcher for Booking -->
-            <div class="language-switcher booking-lang-switcher">
-                <button class="lang-btn active" data-lang="id" title="Bahasa Indonesia">ID</button>
-                <button class="lang-btn" data-lang="en" title="English">EN</button>
-            </div>
-        </div>
-    </header>
 
     <div class="tour-map-bg"></div>
 
     <div class="tour-main-container">
         <header class="tour-form-header">
-            <h1 id="booking-title">Pendaftaran Tour Telusur Kota</h1>
-            <p id="booking-subtitle">Isi data diri dan pilih kategori tur Anda.</p>
+            <h1>Pendaftaran Tour Telusur Kota</h1>
+            <p id="tour-headerSubtitle">Isi data diri dan pilih kategori tur Anda.</p>
         </header>
 
         <!-- STEPPER PROGRESS INDICATOR -->
         <div class="tour-stepper-wrapper">
             <div class="tour-stepper-item tour-active" data-step="1">
                 <div class="tour-step-counter">1</div>
-                <div class="tour-step-name" id="step1-name">Data & Kategori</div>
+                <div class="tour-step-name">Data & Kategori</div>
             </div>
             <div class="tour-stepper-item" data-step="2">
                 <div class="tour-step-counter">2</div>
-                <div class="tour-step-name" id="step2-name">Pembayaran</div>
+                <div class="tour-step-name">Pembayaran</div>
             </div>
             <div class="tour-stepper-item" data-step="3">
                 <div class="tour-step-counter">3</div>
-                <div class="tour-step-name" id="step3-name">Konfirmasi</div>
+                <div class="tour-step-name">Konfirmasi</div>
             </div>
         </div>
 
@@ -67,51 +47,51 @@
             <div class="tour-form-step" data-step="1">
                 
                 <div class="tour-form-panel tour-glass">
-                    <h2><i class='bx bx-user-pin'></i> <span id="booking-personal-data">Data Diri</span></h2>
+                    <h2><i class='bx bx-user-pin'></i> Data Diri</h2>
                     
                     <div class="tour-input-group">
-                        <label id="booking-fullname">Nama Lengkap</label>
+                        <label>Nama Lengkap</label>
                         <div class="tour-input-wrapper">
                             <i class='bx bx-user'></i>
-                            <input type="text" id="tour-fullName" name="fullName" placeholder="Masukkan Nama Lengkap" data-i18n-placeholder="booking.fullNamePlaceholder" required>
+                            <input type="text" id="tour-fullName" name="fullName" placeholder="Masukkan Nama Lengkap" required>
                         </div>
                     </div>
 
                     <div class="tour-input-group">
-                        <label id="booking-whatsapp">Nomor WhatsApp</label>
+                        <label>Nomor WhatsApp</label>
                         <div class="tour-input-wrapper">
-                            <input type="tel" id="tour-whatsapp" name="whatsapp" placeholder="821 234 5678" data-i18n-placeholder="booking.whatsappPlaceholder" required>
+                            <input type="tel" id="tour-whatsapp" name="whatsapp" placeholder="821 234 5678" required>
                         </div>
                     </div>
 
                     <div class="tour-input-group">
-                        <label id="booking-email">Email</label>
+                        <label>Email</label>
                         <div class="tour-input-wrapper">
                             <i class='bx bx-envelope'></i>
-                            <input type="email" id="tour-email" name="email" placeholder="contoh@email.com" data-i18n-placeholder="booking.emailPlaceholder" required>
+                            <input type="email" id="tour-email" name="email" placeholder="contoh@email.com" required>
                         </div>
                     </div>
 
                     <div class="tour-input-group">
-                        <label id="booking-city">Kota Asal</label>
+                        <label>Kota Asal</label>
                         <div class="tour-input-wrapper">
                             <i class='bx bx-map-pin'></i>
-                            <input type="text" id="tour-cityOrigin" name="cityOrigin" placeholder="Contoh: Semarang" data-i18n-placeholder="booking.cityOriginPlaceholder" required>
+                            <input type="text" id="tour-cityOrigin" name="cityOrigin" placeholder="Contoh: Semarang" required>
                         </div>
                     </div>
 
                     <div class="tour-input-group">
-                        <label id="booking-instagram">Akun Instagram</label>
+                        <label>Akun Instagram</label>
                         <div class="tour-input-wrapper">
                             <i class='bx bxl-instagram'></i>
-                            <input type="text" id="tour-instagram" name="instagram" placeholder="username" data-i18n-placeholder="booking.instagramPlaceholder" required>
+                            <input type="text" id="tour-instagram" name="instagram" placeholder="username" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="tour-form-panel tour-glass">
-                    <h2><i class='bx bx-medal'></i> <span id="booking-choose-category">Pilih Kategori Tour</span></h2>
-                    <p class="tour-panel-subtitle" id="booking-category-subtitle">Pilih kategori tur yang sesuai dengan preferensi Anda.</p>
+                    <h2><i class='bx bx-medal'></i> Pilih Kategori Tour</h2>
+                    <p class="tour-panel-subtitle">Pilih kategori tur yang sesuai dengan preferensi Anda.</p>
                     
                     <div class="tour-category-cards">
                         <div class="tour-category-card" data-category="regular">
@@ -289,64 +269,7 @@
         </form>
     </div>
 
-    <script src="translations.js"></script>
     <script src="booking.js"></script>
     <script src="mobile-enhancements.js"></script>
-    
-    <script>
-        // Handle language switching on booking page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Language switcher buttons
-            const langBtns = document.querySelectorAll('.booking-lang-switcher .lang-btn');
-            langBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    setLanguage(lang);
-                    updateBookingTranslations(lang);
-                });
-            });
-        });
-        
-        // Update booking form translations
-        function updateBookingTranslations(lang) {
-            const t = translations[lang].booking;
-            
-            // Update header
-            const headerTitle = document.getElementById('booking-header-title');
-            if (headerTitle) headerTitle.textContent = lang === 'id' ? 'Pendaftaran Tour' : 'Tour Registration';
-            
-            const titleEl = document.getElementById('booking-title');
-            const subtitleEl = document.getElementById('booking-subtitle');
-            if (titleEl) titleEl.textContent = lang === 'id' ? 'Pendaftaran Tour Telusur Kota' : 'Tour Registration';
-            if (subtitleEl) subtitleEl.textContent = t.subtitle;
-            
-            // Update step names
-            document.getElementById('step1-name').textContent = t.step1;
-            document.getElementById('step2-name').textContent = t.step2;
-            document.getElementById('step3-name').textContent = t.step3;
-            
-            // Update labels
-            document.getElementById('booking-personal-data').textContent = t.personalData;
-            document.getElementById('booking-fullname').textContent = t.fullName;
-            document.getElementById('booking-whatsapp').textContent = t.whatsapp;
-            document.getElementById('booking-email').textContent = t.email;
-            document.getElementById('booking-city').textContent = t.cityOrigin;
-            document.getElementById('booking-instagram').textContent = t.instagram;
-            document.getElementById('booking-choose-category').textContent = t.chooseTourCategory;
-            document.getElementById('booking-category-subtitle').textContent = t.categorySubtitle;
-            
-            // Update placeholders
-            document.getElementById('tour-fullName').placeholder = t.fullNamePlaceholder;
-            document.getElementById('tour-whatsapp').placeholder = t.whatsappPlaceholder;
-            document.getElementById('tour-email').placeholder = t.emailPlaceholder;
-            document.getElementById('tour-cityOrigin').placeholder = t.cityOriginPlaceholder;
-            document.getElementById('tour-instagram').placeholder = t.instagramPlaceholder;
-        }
-        
-        // Listen for language changes from translations.js
-        window.addEventListener('languageChanged', function(event) {
-            updateBookingTranslations(event.detail.language);
-        });
-    </script>
 </body>
 </html>

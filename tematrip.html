@@ -21,17 +21,11 @@
       </a>
 
       <nav class="navbar" id="navbar">
-        <a href="index.html" id="nav-beranda">BERANDA</a>
-        <a href="tematrip.html" class="active" id="nav-tematrip">TEMA TRIP</a>
-        <a href="map.html" id="nav-storymap">STORY MAPS</a>
-        <a href="tourismmaps.html" id="nav-tourismmaps">TOURISM MAPS</a>
-        <a href="profile.html" id="nav-tentangkami">TENTANG KAMI</a>
-        
-        <!-- Language Switcher -->
-        <div class="language-switcher">
-          <button class="lang-btn active" data-lang="id" title="Bahasa Indonesia">ID</button>
-          <button class="lang-btn" data-lang="en" title="English">EN</button>
-        </div>
+        <a href="index.html" >BERANDA</a>
+        <a href="tematrip.html" class="active">TEMA TRIP</a>
+        <a href="map.html">STORY MAPS</a>
+        <a href="tourismmaps.html">TOURISM MAPS</a>
+        <a href="profile.html">TENTANG KAMI</a>
       </nav>
 
       <!-- Hamburger Menu for Mobile -->
@@ -47,19 +41,19 @@
  <!-- TABS SECTION -->
     <section id="tematrip-section">
     <div class="page-section-title">
-        <span class="badge" id="tematrip-badge">Eksplorasi Tema Trip</span>
-        <h2><span id="tematrip-title">Pilih</span> <span class="italic-accent" id="tematrip-titleAccent">Tema Tur</span> <span id="tematrip-title2">Anda</span></h2>
-        <p class="section-subtitle" id="tematrip-subtitle">Temukan narasi tersembunyi di setiap sudut kota melalui kategori tur yang dirancang khusus untuk pengalaman imersif.</p>
+        <span class="badge">Eksplorasi Tema Trip</span>
+        <h2>Pilih <span class="italic-accent">Tema Tur</span> Anda</h2>
+        <p class="section-subtitle">Temukan narasi tersembunyi di setiap sudut kota melalui kategori tur yang dirancang khusus untuk pengalaman imersif.</p>
     </div>
 
 <!-- CATEGORY BUTTONS -->
 
     <div class="filter-container">
-        <button class="filter-btn active" data-filter="all" id="filter-all">Semua</button>
-        <button class="filter-btn" data-filter="regular" id="filter-regular">Regular</button>
-        <button class="filter-btn" data-filter="special" id="filter-special">Special</button>
-        <button class="filter-btn" data-filter="private" id="filter-private">Private</button>
-        <button class="filter-btn" data-filter="education" id="filter-education">Education</button>
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="regular">Regular</button>
+        <button class="filter-btn" data-filter="special">Special</button>
+        <button class="filter-btn" data-filter="private">Private</button>
+        <button class="filter-btn" data-filter="education">Education</button>
     </div>
 
 <!--TOUR GUIDES SECTION-->
@@ -68,7 +62,7 @@
     <!-- Card 1 -->
     <div class="tour-card" data-category="regular">
         <div class="card-image">
-            <img src="https://via.placeholder.com/400x300" alt="Hotel Mutiara">
+            <img src="DOKUMENTASI/TEMATRIP\MUTIARA.webp/400x300" alt="Hotel Mutiara">
         <div class="badge-time">
             <span class="material-symbols-outlined">schedule</span> 2 Jam
         </div>
@@ -94,7 +88,7 @@
     <!-- Card 2 -->
     <div class="tour-card" data-category="regular">
         <div class="card-image">
-            <img src="https://via.placeholder.com/400x300" alt="Asistent Resident">
+            <img src="DOKUMENTASI/TEMATRIP\ASISTEN RESIDENT.webp/400x300" alt="Asistent Resident">
         <div class="badge-time">
             <span class="material-symbols-outlined">schedule</span> 2 Jam
         </div>
@@ -120,7 +114,7 @@
     <!-- Card 3 -->
     <div class="tour-card" data-category="regular">
         <div class="card-image">
-            <img src="https://via.placeholder.com/400x300" alt="Rumah Dokter Hasmo">
+            <img src="DOKUMENTASI/TEMATRIP\RUMAH DOKTER HASMO.webp/400x300" alt="Rumah Dokter Hasmo">
         <div class="badge-time">
             <span class="material-symbols-outlined">schedule</span> 2 Jam
         </div>
@@ -529,7 +523,6 @@
   </div>
 </footer>
 
-  <script src="translations.js"></script>
   <script src="script.js"></script>
 
   <script>
@@ -577,43 +570,6 @@
       // If already loaded
       setTimeout(applyFilterFromSession, 200);
     }
-
-    // Handle language switching on tematrip page
-    function updateTematripTranslations(lang) {
-      const t = translations[lang].tematrip;
-      
-      document.getElementById('tematrip-badge').textContent = t.badge;
-      document.getElementById('tematrip-title').textContent = t.title;
-      document.getElementById('tematrip-titleAccent').textContent = t.titleAccent;
-      document.getElementById('tematrip-title2').textContent = 'Anda'; // Stay same
-      document.getElementById('tematrip-subtitle').textContent = t.subtitle;
-      
-      // Update filter buttons
-      document.getElementById('filter-all').textContent = t.filterAll;
-      
-      // Update card labels (Mulai Dari / Starting From)
-      const priceLabels = document.querySelectorAll('.price-box span');
-      priceLabels.forEach(label => {
-        if (label.textContent === 'Mulai Dari' || label.textContent === 'Starting From') {
-          label.textContent = t.startingFrom;
-        }
-      });
-      
-      // Update duration labels (Jam / Hours)
-      const durationLabels = document.querySelectorAll('.badge-time');
-      durationLabels.forEach(label => {
-        const text = label.textContent;
-        if (text.includes('Jam') || text.includes('Hours')) {
-          const hours = text.match(/\\d+/)[0];
-          label.innerHTML = `<span class="material-symbols-outlined">schedule</span> ${hours} ${t.duration}`;
-        }
-      });
-    }
-
-    // Listen for language changes
-    window.addEventListener('languageChanged', function(event) {
-      updateTematripTranslations(event.detail.language);
-    });
   </script>
 </body>
 </html>

@@ -28,17 +28,11 @@
       </a>
 
       <nav class="navbar">
-        <a href="index.html" id="nav-beranda">BERANDA</a>
-        <a href="tematrip.html" id="nav-tematrip">TEMA TRIP</a>
-        <a href="map.html" class="active" id="nav-storymap">STORY MAPS</a>
-        <a href="tourismmaps.html" id="nav-tourismmaps">TOURISM MAPS</a>
-        <a href="profile.html" id="nav-tentangkami">TENTANG KAMI</a>
-        
-        <!-- Language Switcher -->
-        <div class="language-switcher">
-          <button class="lang-btn active" data-lang="id" title="Bahasa Indonesia">ID</button>
-          <button class="lang-btn" data-lang="en" title="English">EN</button>
-        </div>
+        <a href="index.html" >BERANDA</a>
+        <a href="tematrip.html" >TEMA TRIP</a>
+        <a href="map.html" class="active">STORY MAPS</a>
+        <a href="tourismmaps.html">TOURISM MAPS</a>
+        <a href="profile.html">TENTANG KAMI</a>
         </nav>
     </div>
   </header>
@@ -97,13 +91,13 @@
     <aside class="side-panel" id="sidePanel">
       <!-- PANEL HEADER -->
       <div class="side-panel-header">
-        <h2 id="map-panel-title">Titik Sejarah Kota</h2>
+        <h2>Titik Sejarah Kota</h2>
         <div class="side-filter-container">
-          <button class="side-filter-btn active" data-filter="all" id="map-filter-all"><i class='bx bx-grid-alt'></i> Semua</button>
-          <button class="side-filter-btn" data-filter="regular" id="map-filter-regular"><i class='bx bx-walk'></i> Regular</button>
-          <button class="side-filter-btn" data-filter="special" id="map-filter-special"><i class='bx bx-star'></i> Special</button>
-          <button class="side-filter-btn" data-filter="private" id="map-filter-private"><i class='bx bx-lock-alt'></i> Private</button>
-          <button class="side-filter-btn" data-filter="education" id="map-filter-education"><i class='bx bx-lock-alt'></i> Education</button>
+          <button class="side-filter-btn active" data-filter="all"><i class='bx bx-grid-alt'></i> Semua</button>
+          <button class="side-filter-btn" data-filter="regular"><i class='bx bx-walk'></i> Regular</button>
+          <button class="side-filter-btn" data-filter="special"><i class='bx bx-star'></i> Special</button>
+          <button class="side-filter-btn" data-filter="private"><i class='bx bx-lock-alt'></i> Private</button>
+          <button class="side-filter-btn" data-filter="education"><i class='bx bx-lock-alt'></i> Education</button>
         </div>
       </div>
 
@@ -164,39 +158,6 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="translations.js"></script>
   <script src="script.js"></script>
-  
-  <script>
-    // Handle language switching on map page
-    function updateMapTranslations(lang) {
-      const t = translations[lang].mapSidePanel;
-      
-      if (document.getElementById('map-panel-title')) {
-        document.getElementById('map-panel-title').textContent = t.title;
-      }
-      
-      const filterButtons = {
-        'map-filter-all': t.all,
-        'map-filter-regular': t.regular,
-        'map-filter-special': t.special,
-        'map-filter-private': t.private,
-        'map-filter-education': t.education
-      };
-      
-      Object.entries(filterButtons).forEach(([id, text]) => {
-        const btn = document.getElementById(id);
-        if (btn) {
-          const icon = btn.querySelector('i') ? btn.querySelector('i').outerHTML + ' ' : '';
-          btn.innerHTML = icon + text;
-        }
-      });
-    }
-    
-    // Listen for language changes
-    window.addEventListener('languageChanged', function(event) {
-      updateMapTranslations(event.detail.language);
-    });
-  </script>
 </body>
 </html>

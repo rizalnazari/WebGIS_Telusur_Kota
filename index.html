@@ -18,17 +18,11 @@
       </a>
 
       <nav class="navbar" id="navbar">
-        <a href="index.html" class="active" id="nav-beranda">BERANDA</a>
-        <a href="tematrip.html" id="nav-tematrip">TEMA TRIP</a>
-        <a href="map.html" id="nav-storymap">STORY MAPS</a>
-        <a href="tourismmaps.html" id="nav-tourismmaps">TOURISM MAPS</a>
-        <a href="profile.html" id="nav-tentangkami">TENTANG KAMI</a>
-        
-        <!-- Language Switcher -->
-        <div class="language-switcher">
-          <button class="lang-btn active" data-lang="id" title="Bahasa Indonesia">ID</button>
-          <button class="lang-btn" data-lang="en" title="English">EN</button>
-        </div>
+        <a href="index.html" class="active">BERANDA</a>
+        <a href="tematrip.html" >TEMA TRIP</a>
+        <a href="map.html">STORY MAPS</a>
+        <a href="tourismmaps.html">TOURISM MAPS</a>
+        <a href="profile.html">TENTANG KAMI</a>
       </nav>
 
       <!-- Hamburger Menu for Mobile -->
@@ -80,14 +74,14 @@
             </div>
         </div>
         <div class="about-content">
-            <h2 id="about-title">Telusur Kota</h2>
-            <p id="about-description">Wadah untuk mengenalkan dan memahami sejarah dan budaya melalui pariwisata dalam suatu kota. 
+            <h2>Telusur Kota</h2>
+            <p>Wadah untuk mengenalkan dan memahami sejarah dan budaya melalui pariwisata dalam suatu kota. 
                Hal ini bertujuan untuk memperkaya perspektif kita dalam proses mengukir sejarah baru di masa sekarang dan yang akan datang.</p>
             <button class="btn-map" onclick="window.location.href='map.html'">
-            <i class='bx bx-map-pin'></i> <span id="btn-storyMaps">Story Maps</span>
+            <i class='bx bx-map-pin'></i> Story Maps
             </button>
             <button class="btn-tourism" onclick="window.location.href='tourismmaps.html'">
-             <i class='bx bx-map-pin'></i> <span id="btn-tourismMaps">Tourism Maps</span>
+             <i class='bx bx-map-pin'></i> Tourism Maps
             </button>
         </div>
     </section>
@@ -100,44 +94,44 @@
             <div class="card">
                 <img src="DOKUMENTASI/BERANDA/IMG_7614.webp" alt="Pecinan">
                 <div class="card-body">
-                    <h3 id="card-regular-title">Regular Trip</h3>
-                    <p class="text-justify" id="card-regular-desc">
+                    <h3>Regular Trip</h3>
+                    <p class="text-justify">
                       Agenda perjalanan yang diadakan 2 minggu sekali pada minggu pertama & minggu ketiga dalam satu bulan, dengan tema trip yang sudah ditentukan oleh Tim Telusur
                     </p>
-                    <button class="btn-outline" onclick="navigateToTematrip('regular')" id="btn-regular-detail">Lihat Detail</button>
+                    <button class="btn-outline" onclick="navigateToTematrip('regular')">Lihat Detail</button>
                 </div>
             </div>
 
             <div class="card">
                 <img src="DOKUMENTASI/BERANDA/IMG_3938.webp" alt="Di Balik Tembok Jepang">
                 <div class="card-body">
-                    <h3 id="card-special-title">Special Trip</h3>
-                    <p class="text-justify" id="card-special-desc">
+                    <h3>Special Trip</h3>
+                    <p class="text-justify">
                       Agenda perjalanan yang diadakan setahun sekali pada peristiwa tertentu (e.g. hari pendidikan nasional). Tema perjalanan dari trip ini bisa diakses Teman Telusur tanpa menunggu 1 tahun sekali melalui <b>"Trip Privat"</b>
                     </p>
-                    <button class="btn-outline" onclick="navigateToTematrip('special')" id="btn-special-detail">Lihat Detail</button>
+                    <button class="btn-outline" onclick="navigateToTematrip('special')">Lihat Detail</button>
                 </div>
             </div>
 
             <div class="card">
                 <img src="DOKUMENTASI/BERANDA/IMG_4238.webp" alt="Suzanne De La Brethoniere">
                 <div class="card-body">
-                    <h3 id="card-private-title">Private Trip</h3>
-                    <p class="text-justify" id="card-private-desc">
+                    <h3>Private Trip</h3>
+                    <p class="text-justify">
                       Agenda perjalanan khusus yang cocok dilakukan bersama teman, keluarga, juga institusi dengan tema dan waktu yang dapat disesuaikan atas kesepakatan bersama
                     </p>
-                    <button class="btn-outline" onclick="navigateToTematrip('private')" id="btn-private-detail">Lihat Detail</button>
+                    <button class="btn-outline" onclick="navigateToTematrip('private')">Lihat Detail</button>
                 </div>
             </div>
 
             <div class="card">
                 <img src="DOKUMENTASI/BERANDA/IMG_2790.webp" alt="Pecinan">
                 <div class="card-body">
-                    <h3 id="card-education-title">Education Trip</h3>
-                    <p class="text-justify" id="card-education-desc">
+                    <h3>Education Trip</h3>
+                    <p class="text-justify">
                       Agenda perjalanan dengan tema yang sudah ditetapkan Tim Telusur khusus untuk pelajar yang sedang berada di bangku sekolah.
                     </p>
-                    <button class="btn-outline" onclick="navigateToTematrip('education')" id="btn-education-detail">Lihat Detail</button>
+                    <button class="btn-outline" onclick="navigateToTematrip('education')">Lihat Detail</button>
                 </div>
             </div>
 
@@ -164,22 +158,21 @@
       </div>
 
       <div class="footer-section contact">
-        <h3 id="footer-contact-heading">Kontak Kami</h3>
+        <h3>Kontak Kami</h3>
         <ul>
-          <li><i class='bx bx-map'></i> <span id="footer-location">Salatiga, Central Java</span></li>
-          <li><i class='bx bx-envelope'></i> <span id="footer-email">temantelusur@gmail.com</span></li>
-          <li><i class='bx bx-phone'></i> <span id="footer-phone">(62) 85117159954</span></li>
+          <li><i class='bx bx-map'></i> Salatiga, Central Java</li>
+          <li><i class='bx bx-envelope'></i> temantelusur@gmail.com</li>
+          <li><i class='bx bx-phone'></i> (62) 85117159954</li>
         </ul>
       </div>
     </div>
 
     <div class="copyright-bottom">
-      <p id="footer-copyright">© 2026 Telusur Kota. All rights reserved.</p>
+      <p>© 2026 Telusur Kota. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
-  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
