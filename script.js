@@ -658,6 +658,11 @@ document.addEventListener('DOMContentLoaded', () => {
       maxZoom: 18
     });
 
+    const mapidStreet = L.tileLayer('https://basemap.mapid.io/styles/street-2nd-building/{z}/{x}/{y}.png?key=', {
+      attribution: '&copy; MapID',
+      maxZoom: 19
+    });
+
     // MAP INITIALIZATION WITH IMPROVED ERROR HANDLING
     try {
       window.map = L.map('map', {
@@ -697,10 +702,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseMaps = {
       "OpenStreetMap": osmLayer,
       "CartoDB Voyager": cartoVoyager,
-      "Satelit (Esri)": esriSatellite
+      "Satelit (Esri)": esriSatellite,
+      "MapID Street": mapidStreet
     };
 
-    const basemapLayers = [osmLayer, cartoVoyager, esriSatellite];
+    const basemapLayers = [osmLayer, cartoVoyager, esriSatellite, mapidStreet];
     let currentBasemapIndex = 0;
 
     function switchBasemap(index = null) {
